@@ -1,0 +1,1320 @@
+% P0 consolidated T1-T5 operational specification, version 0.12
+%<*src_p0layout>
+P0_BEGIN
+
+SOURCE_LAYOUT
+
+source_form(source_tag_open(TAG))
+source_form(source_tag_close(TAG))
+source_form(latex_subsection(TITLE))
+source_form(latex_subsubsection(TITLE))
+
+FOR E IN [source_tag_open(TAG),
+          source_tag_close(TAG),
+          latex_subsection(TITLE),
+          latex_subsubsection(TITLE)] DO
+    typographical_only(E)
+    not_lks_expression(E)
+    not_ks_object(E)
+    not_ks_operation(E)
+
+P0_BLOCKS
+
+p0_block_sequence(
+    [p0agent,
+     p0meta,
+     p0macros,
+     p0vocabulary,
+     p0task,
+     p0evaluation,
+     p0rules,
+     p0proposals,
+     p0selection,
+     p0failure,
+     p0traceks,
+     p0reusable,
+     p0authority,
+     p0state])
+%</src_p0layout>
+
+
+\subsubsection{Agent and operating mode}
+
+%<*src_p0agent>
+agent(LML_PROPOSER)
+implementation_class(DETERMINISTIC_PROPOSER)
+input_language(DSPL)
+mode(TASK_PROPOSAL)
+profile_scope(T1_T5_RESTRICTED)
+
+module_role(LML_PROPOSER,task_stateless)
+module_role(LML_PROPOSER,finite_deterministic_candidate_generation)
+module_role(LML_PROPOSER,local_candidate_evaluation)
+module_role(LML_PROPOSER,stored_knowledge_application)
+module_role(LML_PROPOSER,proposal_only)
+module_role(LML_PROPOSER,transient_raw_trace_serialization)
+module_role(LML_PROPOSER,transient_reusable_knowledge_description_proposal)
+%</src_p0agent>
+
+
+\subsubsection{Meta-forms}
+
+%<*src_p0meta>
+META_FORMS
+and(Q1,...,Qn)
+not(Q)
+implies(Q1,Q2)
+iff(Q1,Q2)
+forall(V,Q)
+exists(V,Q)
+holds(Q)
+setof(V,Q)
+cardinality(S,N)
+sort_by_search_priority_then_lex_binding(S0,S1)
+map(F,S0,S1)
+flatten(S0,S1)
+concat(A,B)
+verbatim(A)
+requires(A,B,C)
+macro_requires(A,B)
+%</src_p0meta>
+
+
+\subsubsection{Macro and editorial forms}
+
+%<*src_p0macros>
+MACRO_FORMS
+macro(RANGE_NOTATION)
+macro(TEMPLATE_NOTATION)
+macro(ZIP_NOTATION)
+macro(DIRECT_PRODUCT_NOTATION)
+macro(SCHEMA_PLACEHOLDER_NOTATION)
+macro(INCLUDE_NOTATION)
+
+expand(include(P0),verbatim(P0))
+
+expand(X^[a,b],X^[a,b,1])
+expand(X^[a,b,d],
+       [X(a+k*d) | k in N0, a+k*d <= b])
+
+expand(FOR n IN a:b DO E(n),
+       FOR n IN a:b:1 DO E(n))
+expand(FOR n IN a:b:d DO E(n),
+       [E(a+k*d) | k in N0, a+k*d <= b])
+expand(FOR x IN [x1,...,xm] DO E(x),
+       [E(x1),...,E(xm)])
+
+expand(ZIP [x1,...,xm],[y1,...,ym] AS x,y DO E(x,y),
+       [E(x1,y1),...,E(xm,ym)])
+macro_requires(ZIP(L1,L2),equal_length(L1,L2))
+
+expand(X^[a,b] x Y^[c,d] : Pair(tau_X,tau_Y),
+       [XiYj : Pair(tau_X,tau_Y),pair(XiYj,Xi,Yj)
+        | a <= i,i <= b,c <= j,j <= d])
+
+reserved_separator(x)
+schema_placeholder(_)
+
+FOR M IN [RANGE_NOTATION,
+          TEMPLATE_NOTATION,
+          ZIP_NOTATION,
+          DIRECT_PRODUCT_NOTATION,
+          SCHEMA_PLACEHOLDER_NOTATION,
+          INCLUDE_NOTATION] DO
+    typographical_only(M)
+
+FOR M IN [RANGE_NOTATION,
+          TEMPLATE_NOTATION,
+          ZIP_NOTATION,
+          DIRECT_PRODUCT_NOTATION,
+          SCHEMA_PLACEHOLDER_NOTATION,
+          INCLUDE_NOTATION,
+          _] DO
+    not_ks_object(M)
+    not_ks_operation(M)
+%</src_p0macros>
+
+
+\subsubsection{Generic Knowledge-Space vocabulary}
+
+%<*src_p0vocabulary>
+GENERIC_TYPES
+FOR tau IN [tau_T,tau_CX,tau_I,tau_R,tau_H,tau_X,tau_TR] DO
+    type(tau)
+
+type_constructor(Stream,1)
+type_constructor(Pair,2)
+
+GENERIC_CONTEXT_FORMS
+context_object(CX)
+context_base_type(CX,tau)
+context_member(CX,O)
+context_partition(CX)
+context_distinguishes(CX,tau)
+finite_context(CX)
+
+GENERIC_RELATION_FORMS
+rtype(R,tau,tau)
+edge(O,R,Oprime,w)
+func(R)
+refl(R)
+inv(R,Rprime)
+
+GENERIC_POSITION_FORMS
+position_next(I,J)
+
+GENERIC_OBJECT_FORMS
+otype(O,tau)
+pair(P,O1,O2)
+iff(O : tau,otype(O,tau))
+
+REPRESENTATION_ONLY_STRUCTURE
+representation_grammar_only(Pair)
+structural_arity(Pair,2)
+
+structural_component(P,1,O1) :- pair(P,O1,O2)
+structural_component(P,2,O2) :- pair(P,O1,O2)
+
+The Pair constructor and pair(P,O1,O2) expose only the two syntactic roles of
+a represented object.  They do not assert that the roles should be solved
+independently, do not assert ALL_ONCE, and do not constitute a reusable
+componentwise problem-solving schema.
+%</src_p0vocabulary>
+
+
+\subsubsection{Task and component forms}
+
+%<*src_p0task>
+GENERIC_TASK_FORMS
+task_object(T)
+task_context(T,CX)
+task_input(T,U)
+task_available_relation(T,R)
+task_unknown(T,X)
+unknown_type(X,tau)
+unknown_location(X,U,I)
+task_constraint(T,C)
+
+GENERIC_CONSTRAINT_FORMS
+constraint_same_relation_successive(C,U)
+constraint_component_all_once(C,U,k,CX)
+constraint_component_relation(C,U,k,R)
+
+DERIVED_COMPONENT_FORMS
+
+task_component_context(T,U,k,CX) :-
+    and(task_constraint(T,C),
+        task_input(T,U),
+        constraint_component_all_once(C,U,k,CX))
+
+task_component_constraint(T,U,k,ALL_ONCE) :-
+    and(task_constraint(T,C),
+        task_input(T,U),
+        constraint_component_all_once(C,U,k,CX))
+
+task_component_relation(T,U,k,R) :-
+    and(task_constraint(T,C),
+        task_input(T,U),
+        constraint_component_relation(C,U,k,R))
+
+one_unknown_pair(T,U) :-
+    cardinality(
+        setof(pair_unknown(X,I),
+              and(task_unknown(T,X),
+                  unknown_location(X,U,I),
+                  unknown_type(X,Pair(tau1,tau2)))),
+        1)
+
+GENERIC_TASK_STATE_FORMS
+active_task(T)
+val(U,I,O)
+unk(U,I,X)
+
+COMPONENT_SCOPE_REQUIREMENT
+
+Component contexts, ALL_ONCE constraints, and component relations are scoped
+to the stream U named by the originating constraint.  They must never be
+borrowed from another task input merely because the task identifier T and
+component index k coincide.
+%</src_p0task>
+
+
+\subsubsection{Evaluation forms}
+
+%<*src_p0evaluation>
+GENERIC_EVALUATION_FORMS
+well_formed(T,H)
+derives_binding(T,H,X,O)
+proposal_complete(T,H,X,O)
+type_compatible(T,H,X,O)
+satisfies_givens(T,H,X,O)
+satisfies_constraints(T,H,X,O)
+derivation_supported(T,H,X,O)
+check_result(T,H,X,O,C,R)
+locally_compatible(T,X,O,H)
+sequentially_type_compatible(H,Hprime)
+
+REQUIRED_CHECKS
+required_check(proposal_complete)
+required_check(type_compatible)
+required_check(satisfies_givens)
+required_check(satisfies_constraints)
+required_check(derivation_supported)
+
+ASSESSMENT_RESULTS
+assessment_result(pass)
+assessment_result(fail)
+assessment_result(unresolved)
+
+CHECK_BINDINGS
+check_result(T,H,X,O,proposal_complete,R) :-
+    evaluate_proposal_complete(T,H,X,O,R)
+
+check_result(T,H,X,O,type_compatible,R) :-
+    evaluate_type_compatible(T,H,X,O,R)
+
+check_result(T,H,X,O,satisfies_givens,R) :-
+    evaluate_satisfies_givens(T,H,X,O,R)
+
+check_result(T,H,X,O,satisfies_constraints,R) :-
+    evaluate_satisfies_constraints(T,H,X,O,R)
+
+check_result(T,H,X,O,derivation_supported,R) :-
+    evaluate_derivation_supported(T,H,X,O,R)
+
+LOCAL_SURVIVAL
+iff(locally_compatible(T,X,O,H),
+    and(check_result(T,H,X,O,proposal_complete,pass),
+        check_result(T,H,X,O,type_compatible,pass),
+        check_result(T,H,X,O,satisfies_givens,pass),
+        check_result(T,H,X,O,satisfies_constraints,pass),
+        check_result(T,H,X,O,derivation_supported,pass)))
+%</src_p0evaluation>
+
+
+\subsubsection{Rule expressions and requirements}
+
+%<*src_p0rules>
+RULE_EXPRESSION_FORMS
+rule_expression(F0(U,R))
+rule_expression(F1(T,U,K))
+rule_expression(F2(H,Hprime))
+rule_expression(F3(T,U))
+rule_expression(F4(T,U))
+
+RESTRICTED_T1_T5_SEARCH_PRIORITY
+search_priority(F0(U,R),1)
+search_priority(F3(T,U),2)
+search_priority(F4(T,U),3)
+search_priority(F1(T,U,K),4)
+
+disabled_in_profile(F2(H,Hprime),T1_T5_RESTRICTED)
+
+RULE_EXPRESSION_REQUIREMENTS
+
+FOR Q IN [task_input(T,U),
+          otype(U,Stream(tau)),
+          task_available_relation(T,R),
+          rtype(R,tau,tau)] DO
+    requires(T,F0(U,R),Q)
+
+FOR Q IN [task_input(T,U),
+          otype(U,tau_in),
+          reusable_object(K),
+          reusable_input_type(K,tau_in),
+          reusable_use(K,proposal_source),
+          reusable_single_runtime_mode(K,M)] DO
+    requires(T,F1(T,U,K),Q)
+
+FOR Q IN [well_formed(T,H),
+          well_formed(T,Hprime),
+          sequentially_type_compatible(H,Hprime)] DO
+    requires(T,F2(H,Hprime),Q)
+
+FOR Q IN [task_input(T,U),
+          otype(U,Stream(Pair(tau1,tau2))),
+          one_unknown_pair(T,U),
+          structural_all_once_witness(T,U)] DO
+    requires(T,F3(T,U),Q)
+
+FOR Q IN [task_input(T,U),
+          otype(U,Stream(Pair(tau1,tau2))),
+          learned_structural_lifting_available(T,2),
+          task_component_relation(T,U,1,R1),
+          task_component_relation(T,U,2,R2),
+          rtype(R1,tau1,tau1),
+          rtype(R2,tau2,tau2),
+          func(R1),
+          func(R2),
+          one_unknown_pair(T,U)] DO
+    requires(T,F4(T,U),Q)
+
+iff(well_formed(T,H),
+    and(rule_expression(H),
+        forall(Q,implies(requires(T,H,Q),holds(Q)))))
+
+FINITE_CANDIDATE_HYPOTHESES
+
+candidate_hypothesis(T,F0(U,R)) :-
+    and(task_input(T,U),
+        task_available_relation(T,R),
+        well_formed(T,F0(U,R)))
+
+candidate_hypothesis(T,F3(T,U)) :-
+    and(task_input(T,U),
+        well_formed(T,F3(T,U)))
+
+candidate_hypothesis(T,F4(T,U)) :-
+    and(task_input(T,U),
+        well_formed(T,F4(T,U)))
+
+candidate_hypothesis(T,F1(T,U,K)) :-
+    and(task_input(T,U),
+        reusable_object(K),
+        reusable_use(K,proposal_source),
+        well_formed(T,F1(T,U,K)))
+
+STREAM_AND_PAIR_HELPERS
+
+stream_component_value(U,I,1,O1) :-
+    and(val(U,I,P),
+        pair(P,O1,O2))
+
+stream_component_value(U,I,2,O2) :-
+    and(val(U,I,P),
+        pair(P,O1,O2))
+
+component_present(U,1,O1) :-
+    and(val(U,I,P),
+        pair(P,O1,O2))
+
+component_present(U,2,O2) :-
+    and(val(U,I,P),
+        pair(P,O1,O2))
+
+CANONICAL_STRUCTURAL_LIFTING_HELPERS
+
+reference_stream(T,U,Uref) :-
+    and(task_input(T,Uref),
+        Uref != U,
+        same_stream_item_type(U,Uref),
+        no_task_unknown_in_stream(T,Uref))
+
+reference_role_domain(T,U,k,D) :-
+    and(cardinality(setof(Uref,reference_stream(T,U,Uref)),Nref),
+        Nref >= 2,
+        all_reference_streams_have_common_length(T,U,N),
+        N >= 2,
+        forall(Uref,
+            implies(reference_stream(T,U,Uref),
+                    role_values_form_same_N_element_set_once(Uref,k,D,N))))
+
+target_role_residual(T,U,k,D,O) :-
+    and(reference_role_domain(T,U,k,D),
+        target_has_exactly_N_minus_1_distinct_role_values(T,U,k,D),
+        set_difference(D,setof(V,stream_component_value(U,I,k,V)),[O]))
+
+structural_all_once_witness(T,U) :-
+    and(target_role_residual(T,U,1,D1,O1),
+        target_role_residual(T,U,2,D2,O2))
+
+learned_structural_lifting_available(T,2) :-
+    exists(S,
+        and(schema_object(S),
+            schema_use(S,proposal_source),
+            uses_procedure(S,F3),
+            schema_structure_arity(S,2)))
+
+The reference-role domains are inferred from complete task input streams.
+No task_component_context or COMPONENT_ALL_ONCE declaration is required for
+F3.  The decomposition itself is canonical because Pair syntax has exactly two
+represented roles; no alternative decompositions are enumerated.
+
+RELATION_ADJACENCY_HELPERS
+
+has_scalar_predecessor_value(U,I) :-
+    and(position_next(J,I),
+        val(U,J,P))
+
+has_scalar_successor_value(U,I) :-
+    and(position_next(I,J),
+        val(U,J,S))
+
+scalar_left_relation_candidate(U,I,R,O) :-
+    and(position_next(J,I),
+        val(U,J,P),
+        edge(P,R,O,w))
+
+scalar_right_relation_candidate(U,I,R,O) :-
+    and(position_next(I,J),
+        val(U,J,S),
+        edge(O,R,S,w))
+
+scalar_relation_candidate(U,I,R,O) :-
+    and(has_scalar_predecessor_value(U,I),
+        has_scalar_successor_value(U,I),
+        scalar_left_relation_candidate(U,I,R,O),
+        scalar_right_relation_candidate(U,I,R,O))
+
+scalar_relation_candidate(U,I,R,O) :-
+    and(has_scalar_predecessor_value(U,I),
+        not(has_scalar_successor_value(U,I)),
+        scalar_left_relation_candidate(U,I,R,O))
+
+scalar_relation_candidate(U,I,R,O) :-
+    and(not(has_scalar_predecessor_value(U,I)),
+        has_scalar_successor_value(U,I),
+        scalar_right_relation_candidate(U,I,R,O))
+
+has_component_predecessor_value(U,I,k) :-
+    and(position_next(J,I),
+        stream_component_value(U,J,k,P))
+
+has_component_successor_value(U,I,k) :-
+    and(position_next(I,J),
+        stream_component_value(U,J,k,S))
+
+component_left_relation_candidate(U,I,k,R,O) :-
+    and(position_next(J,I),
+        stream_component_value(U,J,k,P),
+        edge(P,R,O,w))
+
+component_right_relation_candidate(U,I,k,R,O) :-
+    and(position_next(I,J),
+        stream_component_value(U,J,k,S),
+        edge(O,R,S,w))
+
+component_relation_candidate(U,I,k,R,O) :-
+    and(has_component_predecessor_value(U,I,k),
+        has_component_successor_value(U,I,k),
+        component_left_relation_candidate(U,I,k,R,O),
+        component_right_relation_candidate(U,I,k,R,O))
+
+component_relation_candidate(U,I,k,R,O) :-
+    and(has_component_predecessor_value(U,I,k),
+        not(has_component_successor_value(U,I,k)),
+        component_left_relation_candidate(U,I,k,R,O))
+
+component_relation_candidate(U,I,k,R,O) :-
+    and(not(has_component_predecessor_value(U,I,k)),
+        has_component_successor_value(U,I,k),
+        component_right_relation_candidate(U,I,k,R,O))
+
+F0_SINGLE_RELATION_COMPLETION
+
+derives_F0(T,U,R,X,O) :-
+    and(task_unknown(T,X),
+        unknown_location(X,U,I),
+        scalar_relation_candidate(U,I,R,O))
+
+F0 derives values only from represented R-edges adjacent to the unknown
+position.  If both semantic neighbours are known, the candidate must satisfy
+both edge conditions.  If only one semantic neighbour is known, that side is
+used.  If neither side is known, F0 derives no candidate.
+
+F0 does not enumerate context members as candidate values.  The complete
+same-relation-on-successive-positions constraint is checked later by
+satisfies_constraints.
+
+F3_STRUCTURAL_ALL_ONCE_LIFTING
+
+derives_F3(T,U,X,P) :-
+    and(task_unknown(T,X),
+        unknown_location(X,U,I),
+        unknown_type(X,Pair(tau1,tau2)),
+        target_role_residual(T,U,1,D1,O1),
+        target_role_residual(T,U,2,D2,O2),
+        pair(P,O1,O2),
+        otype(P,Pair(tau1,tau2)))
+
+F3 performs canonical structural lifting.  Pair syntax supplies only two stable
+roles.  F3 projects those roles, requires at least two complete reference
+streams of the same represented item type, infers one common finite domain per
+role from those complete streams, verifies that each complete reference uses
+each role-domain value exactly once, derives the unique missing value in each
+role of the incomplete target stream, and recombines those two values.
+
+F3 does not enumerate arbitrary decompositions or arbitrary candidate values.
+It also does not require task-declared component contexts or ALL_ONCE
+constraints.  The successful episode may therefore support learning a reusable
+two-role componentwise ALL_ONCE lifting schema.
+
+The final pair must still be explicitly representable by pair(P,O1,O2); this is
+a representation condition, not a pre-supplied solution schema.
+
+F4_PAIR_COMPONENT_RELATION_COMPLETION
+
+derives_F4(T,U,X,P) :-
+    and(task_unknown(T,X),
+        unknown_location(X,U,I),
+        unknown_type(X,Pair(tau1,tau2)),
+        task_component_relation(T,U,1,R1),
+        task_component_relation(T,U,2,R2),
+        component_relation_candidate(U,I,1,R1,O1),
+        component_relation_candidate(U,I,2,R2,O2),
+        pair(P,O1,O2),
+        otype(P,Pair(tau1,tau2)))
+
+F4 applies represented component relations only after the visible KS contains
+a reusable two-role structural-lifting schema learned from an earlier F3
+episode.  It then applies the represented relation of each component at the
+unknown semantic position, using POSITION_NEXT rather than identifier spelling
+or source order, and recombines the two derived components.
+
+If both semantic neighbours of a component are known, the component candidate
+must satisfy both adjacency conditions.  Complete component-relation
+constraints are checked later by satisfies_constraints.
+
+F1_CONTROLLED_REUSE
+
+reusable_single_runtime_mode(K,M) :-
+    and(reusable_runtime_mode(K,M),
+        cardinality(
+            setof(M0,reusable_runtime_mode(K,M0)),
+            1))
+
+reusable_single_associated_relation(K,R) :-
+    and(reusable_associated_relation(K,R),
+        cardinality(
+            setof(R0,reusable_associated_relation(K,R0)),
+            1))
+
+component_has_all_once(T,U,k) :-
+    task_component_constraint(T,U,k,ALL_ONCE)
+
+component_has_relation(T,U,k) :-
+    task_component_relation(T,U,k,R)
+
+f1_all_once_component_candidate(T,U,k,O) :-
+    and(component_has_all_once(T,U,k),
+        not(component_has_relation(T,U,k)),
+        task_component_context(T,U,k,CX),
+        context_member(CX,O),
+        not(component_present(U,k,O)))
+
+f1_relation_component_candidate(T,U,I,k,O) :-
+    and(component_has_relation(T,U,k),
+        not(component_has_all_once(T,U,k)),
+        task_component_relation(T,U,k,R),
+        component_relation_candidate(U,I,k,R,O))
+
+derives_F1_mixed(T,U,X,P) :-
+    and(task_unknown(T,X),
+        unknown_location(X,U,I),
+        unknown_type(X,Pair(tau1,tau2)),
+        f1_all_once_component_candidate(T,U,1,O1),
+        f1_relation_component_candidate(T,U,I,2,O2),
+        pair(P,O1,O2),
+        otype(P,Pair(tau1,tau2)))
+
+derives_F1_mixed(T,U,X,P) :-
+    and(task_unknown(T,X),
+        unknown_location(X,U,I),
+        unknown_type(X,Pair(tau1,tau2)),
+        f1_relation_component_candidate(T,U,I,1,O1),
+        f1_all_once_component_candidate(T,U,2,O2),
+        pair(P,O1,O2),
+        otype(P,Pair(tau1,tau2)))
+
+derives_F1(T,U,K,X,O) :-
+    and(reusable_single_runtime_mode(K,single_relation_completion),
+        reusable_single_associated_relation(K,R),
+        derives_F0(T,U,R,X,O))
+
+derives_F1(T,U,K,X,O) :-
+    and(reusable_single_runtime_mode(K,structural_all_once_lifting),
+        derives_F3(T,U,X,O))
+
+derives_F1(T,U,K,X,O) :-
+    and(reusable_single_runtime_mode(K,structural_component_relation_completion),
+        derives_F4(T,U,X,O))
+
+derives_F1(T,U,K,X,O) :-
+    and(reusable_single_runtime_mode(K,stored_componentwise_reuse),
+        derives_F1_mixed(T,U,X,O))
+
+F1 is a controlled application of an explicitly represented reusable object K.
+K must have proposal-source permission, an input type matching U, and exactly
+one executable runtime mode.
+
+For a stored scalar single-relation rule/schema, F1 requires exactly one
+associated relation and delegates binding derivation to the F0 semantics.
+
+For a stored structural ALL_ONCE-lifting schema, F1 delegates to F3.
+
+For a stored structural component-relation schema, F1 delegates to F4.
+
+For stored_componentwise_reuse, F1 permits exactly the mixed two-component
+cases used by the restricted demonstration: one component is ALL_ONCE and the
+other is relation constrained.  Each component is derived by its corresponding
+deterministic mechanism, and the result must resolve to an explicitly
+represented pair object.
+
+F1 does not synthesize a new procedure, relation, rule, schema, pair object, or
+context member.
+
+DERIVATION_DISPATCH
+
+derives_binding(T,F0(U,R),X,O) :-
+    derives_F0(T,U,R,X,O)
+
+derives_binding(T,F3(T,U),X,O) :-
+    derives_F3(T,U,X,O)
+
+derives_binding(T,F4(T,U),X,O) :-
+    derives_F4(T,U,X,O)
+
+derives_binding(T,F1(T,U,K),X,O) :-
+    derives_F1(T,U,K,X,O)
+
+RESTRICTED_FAMILY_CLOSURE
+
+The operational meanings of F0, F1, F3, and F4 are completely specified by
+this P0 block for the restricted T1--T5 experiment.  No external executable
+design document may add candidate-generation semantics.
+
+F2 remains outside the frozen restricted profile and has no runtime derivation
+semantics here.
+
+All finite alternatives produced by the definitions above enter the common
+candidate/evaluation/selection pipeline.  Deterministic output order is imposed
+by the selection block, not by incidental parser order.
+
+STREAM_SCOPED_COMPONENT_SEMANTICS
+
+Every F4 and mixed F1 lookup of an explicitly represented component context,
+ALL_ONCE constraint, or component relation is performed for the same stream U
+being completed.  F3 does not read task-declared component metadata: its role
+domains are inferred only from complete reference streams of the current task.
+No component metadata may leak across U2, U3, U4 or any other simultaneous
+task inputs.
+%</src_p0rules>
+
+
+\subsubsection{Proposal linkage and local compatibility}
+
+%<*src_p0proposals>
+TRANSIENT_CANDIDATE_FORMS
+candidate(T,X,O,H)
+candidate_support(T,X,O,H)
+
+candidate(T,X,O,H) :-
+    and(active_task(T),
+        task_unknown(T,X),
+        candidate_hypothesis(T,H),
+        well_formed(T,H),
+        derives_binding(T,H,X,O))
+
+candidate_support(T,X,O,H) :-
+    candidate(T,X,O,H)
+
+PROFILE_SERIALIZATION_CONTRACT
+
+A surviving candidate is serialized as one M7 proposal object for task T,
+with one assignment of X to O and one explicit support object representing the
+procedure/schema/rule application corresponding to H.
+
+Every serialized proposal is paired with one M8 evaluation object containing
+exactly the five required checks in canonical profile order.
+
+The M7/M8 serialization is transient DP output.  Serialization does not insert
+the proposal, evaluation, or support object into the persistent Knowledge
+Space.
+
+TRANSIENT_KNOWLEDGE_PROPOSAL_FORMS
+
+knowledge_proposal_bundle(KSP)
+knowledge_proposal_task(KSP,T)
+knowledge_proposal_item(KSP,N,KD)
+
+knowledge_description(KD)
+knowledge_description_kind(KD,rule)
+knowledge_description_kind(KD,schema)
+knowledge_description_source_candidate(KD,X,O,H)
+knowledge_description_input_type(KD,tau_in)
+knowledge_description_output_type(KD,tau_out)
+knowledge_description_uses_procedure(KD,Fam)
+knowledge_description_associated_relation(KD,R)
+knowledge_description_status(KD,S)
+knowledge_description_proposal_source(KD,true)
+
+KNOWLEDGE_DESCRIPTION_SEMANTICS
+
+A knowledge_description KD is a transient description of a possible persistent
+reusable KS object.  It is not itself a rule_object, schema_object,
+procedure_object, trace_object, run_object, or KS member.
+
+The complete transient set of such descriptions for task T is the bundle KSP.
+
+N is a positive integer local to KSP.  knowledge_proposal_item entries are
+ordered deterministically by the ordered survivor set and, within one
+survivor, by knowledge_description_kind with rule before schema.
+
+SUPPORT_FAMILY
+
+support_family(F0(U,R),F0)
+support_family(F3(T,U),F3)
+support_family(F4(T,U),F4)
+support_family(F1(T,U,K),F1)
+
+SELECTED_SURVIVOR_FOR_KNOWLEDGE_PROPOSAL
+
+selected_survivor(T,X,O,H) :-
+    and(task_response(T,R),
+        member(candidate(X,O,H),R),
+        locally_compatible(T,X,O,H))
+
+GENERIC_REUSABLE_DESCRIPTION_TYPES
+
+knowledge_description_input_type(KD,tau_in) :-
+    and(knowledge_description_source_candidate(KD,X,O,H),
+        task_input(T,U),
+        selected_survivor(T,X,O,H),
+        otype(U,tau_in))
+
+knowledge_description_output_type(KD,tau_out) :-
+    and(knowledge_description_source_candidate(KD,X,O,H),
+        selected_survivor(T,X,O,H),
+        unknown_type(X,tau_out))
+
+EXACT_RULE_DESCRIPTION_POLICY
+
+propose_exact_rule_description(T,X,O,H,KD) :-
+    and(selected_survivor(T,X,O,H),
+        support_family(H,Fam),
+        member(Fam,[F0,F3,F4]),
+        knowledge_description(KD),
+        knowledge_description_kind(KD,rule),
+        knowledge_description_source_candidate(KD,X,O,H),
+        knowledge_description_uses_procedure(KD,Fam),
+        knowledge_description_status(KD,verified),
+        knowledge_description_proposal_source(KD,true))
+
+propose_exact_rule_description(T,X,O,F0(U,R),KD) :-
+    and(selected_survivor(T,X,O,F0(U,R)),
+        knowledge_description_associated_relation(KD,R))
+
+REUSABLE_SCHEMA_DESCRIPTION_POLICY
+
+propose_schema_description(T,X,O,H,KD) :-
+    and(selected_survivor(T,X,O,H),
+        support_family(H,Fam),
+        member(Fam,[F0,F3,F4]),
+        knowledge_description(KD),
+        knowledge_description_kind(KD,schema),
+        knowledge_description_source_candidate(KD,X,O,H),
+        knowledge_description_uses_procedure(KD,Fam),
+        knowledge_description_status(KD,supported),
+        knowledge_description_proposal_source(KD,true))
+
+propose_schema_description(T,X,O,F0(U,R),KD) :-
+    and(selected_survivor(T,X,O,F0(U,R)),
+        knowledge_description_associated_relation(KD,R))
+
+F1_REUSE_CLOSURE_POLICY
+
+A successful F1 reuse episode does not automatically propose a new reusable
+rule, schema, or procedure in the restricted T1--T5 profile.  Its use is
+recorded in the raw trace and may support existing reusable knowledge.
+Any later extension that proposes status changes after repeated reuse must be
+specified explicitly and is not implied by P0 v0.9.
+
+KNOWLEDGE_PROPOSAL_BUNDLE_CONSTRUCTION
+
+For every selected survivor supported by F0, F3, or F4, DP emits exactly two
+transient reusable-knowledge descriptions:
+
+1. one exact rule description with status verified;
+2. one reusable schema description with status supported.
+
+For F0, both descriptions preserve the explicitly selected associated
+relation R.
+
+For F3 and F4, the reusable schema preserves the procedure family and the
+derived input/output types but does not preserve task-local identifiers.
+An F3 reusable schema additionally records schema_structure_arity(S,2) and
+schema_component_mode(S,all_once).  These facts are learned output of the
+successful structural-lifting episode, not task input.
+
+No persistent identifier is created by DP.  Persistent identifiers are
+assigned deterministically by KSU according to KSU_SPEC_v03.
+
+The proposer does not create a permanent reusable object merely because a
+knowledge description is emitted.  Persistent rule/schema creation and
+admission belong exclusively to KSU.
+%</src_p0proposals>
+
+
+\subsubsection{Survivor selection and response}
+
+%<*src_p0selection>
+LOCAL_SELECTION
+
+candidate_set(
+    T,
+    setof(candidate(X,O,H),
+          candidate(T,X,O,H)))
+
+ordered_candidate_set(T,S1) :-
+    candidate_set(T,S0),
+    sort_by_search_priority_then_lex_binding(S0,S1)
+
+survivor_set(
+    T,
+    setof(candidate(X,O,H),
+          and(candidate(T,X,O,H),
+              locally_compatible(T,X,O,H))))
+
+ordered_survivor_set(T,S1) :-
+    survivor_set(T,S0),
+    sort_by_search_priority_then_lex_binding(S0,S1)
+
+RESPONSE_POLICY
+response_policy(T1_T5_RESTRICTED,ALL_SURVIVORS)
+
+task_response(T,R) :-
+    ordered_survivor_set(T,R),
+    cardinality(R,N),
+    N > 0
+
+Selection priority is determined first by search_priority(H,P), then by the
+canonical lexical form of H, then by the canonical lexical form of the binding
+(X,O).  Search priority affects deterministic enumeration only; it does not
+change compatibility conditions.
+%</src_p0selection>
+
+
+\subsubsection{Scope of local failure}
+
+%<*src_p0failure>
+LOCAL_FAILURE_SCOPE
+
+generation_status(T,complete)
+generation_status(T,incomplete)
+generation_status(T,unresolved)
+
+has_unresolved_candidate(T) :-
+    exists(candidate(X,O,H),
+           and(candidate(T,X,O,H),
+               exists(C,
+                      check_result(T,H,X,O,C,unresolved))))
+
+task_response(T,[NO_LOCAL_SOLUTION(T)]) :-
+    and(generation_status(T,complete),
+        survivor_set(T,S),
+        cardinality(S,0),
+        not(has_unresolved_candidate(T)))
+
+task_response(T,[EVALUATION_UNRESOLVED(T)]) :-
+    and(survivor_set(T,S),
+        cardinality(S,0),
+        has_unresolved_candidate(T))
+
+task_response(T,[SEARCH_INCOMPLETE(T)]) :-
+    generation_status(T,incomplete)
+
+scope(NO_LOCAL_SOLUTION(T),restricted_candidate_space(T,P0,visible_KS(T)))
+not_entails(NO_LOCAL_SOLUTION(T),global_unsolvability(T))
+
+NO_LOCAL_SOLUTION is valid only after complete finite generation and complete
+resolved evaluation of the restricted local candidate space.
+%</src_p0failure>
+
+
+\subsubsection{Trace and verified-rule forms}
+
+%<*src_p0traceks>
+TRANSIENT_RAW_TRACE_SERIAL_FORMS
+
+raw_trace_serial(RS)
+raw_trace_task(RS,T)
+
+raw_trace_step(RS,N,used(K))
+raw_trace_step(RS,N,applied(H))
+raw_trace_step(RS,N,derived(X,O,H))
+raw_trace_step(RS,N,evaluated(X,O,H,C,R))
+raw_trace_step(RS,N,selected(X,O,H))
+raw_trace_step(RS,N,rejected(X,O,H,C))
+raw_trace_step(RS,N,outcome(O))
+
+RAW_TRACE_REQUIREMENTS
+
+Every DP invocation emits exactly one transient raw_trace_serial RS.
+
+raw_trace_task(RS,T) names the current task.
+
+N is a positive integer execution index local to RS.
+For one RS, each N occurs at most once.
+The sequence is ordered by increasing N and records actual deterministic
+execution order.
+
+A raw trace serial may refer only to objects, reusable rules, schemas,
+procedures, hypotheses, candidate bindings, checks, results, and outcomes
+that were actually read, applied, derived, evaluated, selected, rejected,
+or produced during the current invocation.
+
+The raw trace serial is not a Knowledge-Space object, not a permanent trace
+node, and not itself inserted into persistent memory by DP.
+
+The raw trace serial is an execution record.  It must not contain inferred
+future KS structure or accepted reusable objects.
+
+FINALIZED_RUN_AND_TRACE_INTERFACE_FORMS
+
+run_object(RUN)
+run_task(RUN,T)
+run_visible_ks(RUN,KS)
+run_trace(RUN,TR)
+run_generation_status(RUN,S)
+
+trace_object(TR)
+trace_task(TR,T)
+trace_used(TR,K)
+trace_part(E,TR)
+trace_supports(TR,K)
+trace_selected(TR,E)
+trace_failed_on(TR,E)
+trace_succeeded_with(TR,E)
+trace_outcome(TR,O)
+
+instantiates(E,K)
+derived_from(E,S)
+
+GENERIC_RULE_OBJECT_FORMS
+rule_object(H)
+rule_form(H,Hexpr)
+rule_signature(H,tau_in,tau_out)
+rule_source(H,TR)
+
+rule_status(H,candidate)
+rule_status(H,verified)
+rule_status(H,supported)
+rule_status(H,stabilized)
+
+rule_use(H,proposal_source)
+
+OWNERSHIP
+
+created_by(raw_trace_serial,LML_PROPOSER)
+created_by(knowledge_proposal_bundle,LML_PROPOSER)
+created_by(knowledge_description,LML_PROPOSER)
+
+created_by(run_object,KSU)
+created_by(trace_object,KSU)
+created_by(persistent_reusable_object,KSU)
+
+not_created_by(run_object,LML_PROPOSER)
+not_created_by(trace_object,LML_PROPOSER)
+not_created_by(persistent_reusable_object,LML_PROPOSER)
+
+KSU consumes the complete transient DP output bundle.  It deterministically
+materializes the permanent run/trace representation from the raw trace and may
+create persistent reusable objects only from explicitly emitted knowledge
+descriptions that are admitted under KSU_SPEC_v01.
+%</src_p0traceks>
+
+
+\subsubsection{Reusable schemas and procedures}
+
+%<*src_p0reusable>
+GENERIC_SCHEMA_FORMS
+schema_object(S)
+schema_input_type(S,tau)
+schema_output_type(S,tau)
+schema_form(S,Hexpr)
+schema_relation(S,R)
+schema_source(S,TR)
+schema_structure_arity(S,N)
+schema_component_mode(S,M)
+
+schema_status(S,candidate)
+schema_status(S,verified)
+schema_status(S,supported)
+schema_status(S,stabilized)
+
+schema_use(S,proposal_source)
+
+GENERIC_PROCEDURE_FORMS
+procedure_object(P)
+procedure_input_type(P,tau)
+procedure_output_type(P,tau)
+procedure_family(P,Fam)
+procedure_form(P,Pexpr)
+procedure_source(P,TR)
+
+procedure_status(P,candidate)
+procedure_status(P,verified)
+procedure_status(P,supported)
+procedure_status(P,stabilized)
+
+procedure_use(P,proposal_source)
+
+GENERIC_PROFILE_ADAPTER_FORMS
+uses_procedure(K,P)
+associated_relation(K,R)
+proposal_source(K,true)
+
+
+FIXED_PROFILE_PROCEDURE_REFERENCE_ENVIRONMENT
+
+profile_procedure_reference(F0)
+profile_procedure_reference(F1)
+profile_procedure_reference(F3)
+profile_procedure_reference(F4)
+
+profile_procedure_family(F0,single_relation_completion)
+profile_procedure_family(F1,stored_componentwise_reuse)
+profile_procedure_family(F3,structural_all_once_lifting)
+profile_procedure_family(F4,structural_component_relation_completion)
+
+procedure_family(P,Fam) :-
+    profile_procedure_family(P,Fam)
+
+The four fixed procedure identifiers are immutable referents supplied by the
+frozen representation profile.  They are available to DP for resolving
+uses_procedure references even when they are not serialized as members of the
+current Knowledge-Space snapshot.  This reference environment contributes no
+learned task facts and is not mutated by DP or KSU.
+
+RESTRICTED_RUNTIME_FAMILIES
+runtime_family(single_relation_completion)
+runtime_family(structural_all_once_lifting)
+runtime_family(structural_component_relation_completion)
+runtime_family(stored_componentwise_reuse)
+
+REUSABLE_OBJECT_BRIDGE
+
+reusable_object(K) :-
+    rule_object(K)
+
+reusable_object(K) :-
+    schema_object(K)
+
+reusable_object(K) :-
+    procedure_object(K)
+
+reusable_input_type(K,tau) :-
+    rule_object(K),
+    rule_signature(K,tau,tau_out)
+
+reusable_input_type(K,tau) :-
+    schema_object(K),
+    schema_input_type(K,tau)
+
+reusable_input_type(K,tau) :-
+    procedure_object(K),
+    procedure_input_type(K,tau)
+
+reusable_output_type(K,tau) :-
+    rule_object(K),
+    rule_signature(K,tau_in,tau)
+
+reusable_output_type(K,tau) :-
+    schema_object(K),
+    schema_output_type(K,tau)
+
+reusable_output_type(K,tau) :-
+    procedure_object(K),
+    procedure_output_type(K,tau)
+
+reusable_form(K,Hexpr) :-
+    rule_object(K),
+    rule_form(K,Hexpr)
+
+reusable_form(K,Hexpr) :-
+    schema_object(K),
+    schema_form(K,Hexpr)
+
+reusable_form(K,Pexpr) :-
+    procedure_object(K),
+    procedure_form(K,Pexpr)
+
+reusable_use(K,proposal_source) :-
+    proposal_source(K,true)
+
+reusable_use(K,proposal_source) :-
+    rule_object(K),
+    rule_use(K,proposal_source)
+
+reusable_use(K,proposal_source) :-
+    schema_object(K),
+    schema_use(K,proposal_source)
+
+reusable_use(K,proposal_source) :-
+    procedure_object(K),
+    procedure_use(K,proposal_source)
+
+reusable_uses_procedure(K,P) :-
+    and(reusable_object(K),
+        uses_procedure(K,P))
+
+reusable_associated_relation(K,R) :-
+    and(reusable_object(K),
+        associated_relation(K,R))
+
+reusable_runtime_mode(K,Fam) :-
+    and(procedure_object(K),
+        procedure_family(K,Fam),
+        runtime_family(Fam))
+
+reusable_runtime_mode(K,Fam) :-
+    and(reusable_object(K),
+        reusable_uses_procedure(K,P),
+        procedure_family(P,Fam),
+        runtime_family(Fam))
+
+PROFILE_ALIGNMENT
+
+The adapter predicates procedure_family, uses_procedure, associated_relation,
+and proposal_source correspond to the identically named representation facets
+of the frozen T1--T5 EIL/DSPL profile.
+
+A stored procedure such as HSBC may therefore expose
+procedure_family(stored_componentwise_reuse) directly.
+
+A stored rule/schema such as H5, H6, or H7 may expose its executable mode
+through uses_procedure(K,P), with P carrying its fixed procedure_family.
+
+GENERIC_PROVENANCE_LINKS
+
+supports(TR,K)
+instantiates(H,K)
+%</src_p0reusable>
+
+
+\subsubsection{Authority}
+
+%<*src_p0authority>
+AUTHORITY
+
+FOR A IN [finite_deterministic_candidate_generation,
+          local_candidate_evaluation,
+          local_hypothesis_filtering,
+          stored_knowledge_application,
+          proposal_output,
+          evaluation_report_output,
+          raw_trace_serial_creation,
+          raw_trace_serial_output,
+          reusable_knowledge_description_proposal_creation,
+          reusable_knowledge_description_proposal_output,
+          local_failure_classification] DO
+    permit(LML_PROPOSER,A)
+
+FOR A IN [authoritative_verification,
+          admission_decision,
+          global_uniqueness_decision,
+          permanent_trace_creation,
+          run_record_creation,
+          rule_object_creation,
+          schema_object_creation,
+          schema_status_update,
+          procedure_object_creation,
+          procedure_status_update,
+          knowledge_space_update,
+          context_enumeration_as_candidate_answers,
+          natural_language_output,
+          rejected_candidate_as_solution_output] DO
+    forbid(LML_PROPOSER,A)
+
+FOR A IN [permanent_trace_creation,
+          run_record_creation,
+          rule_object_creation_from_explicit_description,
+          schema_object_creation_from_explicit_description,
+          procedure_object_creation_from_explicit_description,
+          deterministic_identifier_assignment,
+          admission_decision,
+          knowledge_space_update,
+          canonical_delta_serialization] DO
+    permit(KSU,A)
+
+FOR A IN [task_solving,
+          candidate_generation,
+          candidate_re_evaluation,
+          semantic_rule_invention,
+          semantic_schema_invention,
+          semantic_procedure_invention,
+          changing_dp_check_result] DO
+    forbid(KSU,A)
+%</src_p0authority>
+
+
+\subsubsection{State transfer and setup response}
+
+%<*src_p0state>
+STATE_TRANSFER
+
+task_result_memory(LML_PROPOSER,none)
+knowledge_space_memory(LML_PROPOSER,none)
+
+state_input(LML_PROPOSER,current_task_dspl)
+state_input(LML_PROPOSER,visible_knowledge_space_snapshot)
+
+state_output(LML_PROPOSER,transient_proposal_evaluation_report)
+state_output(LML_PROPOSER,transient_raw_trace_serial)
+state_output(LML_PROPOSER,transient_reusable_knowledge_proposal_bundle)
+state_output(LML_PROPOSER,permanent_knowledge_space_update_none)
+state_output(LML_PROPOSER,permanent_trace_creation_none)
+
+FIXED_PROCEDURE_FAMILIES
+
+fixed_procedure_family(LML_PROPOSER,F0)
+fixed_procedure_family(LML_PROPOSER,F1)
+fixed_procedure_family(LML_PROPOSER,F3)
+fixed_procedure_family(LML_PROPOSER,F4)
+
+disabled_in_profile(F2,T1_T5_RESTRICTED)
+
+COMPLETE_DP_OUTPUT_BUNDLE
+
+dp_output_bundle(O,T,PR,RS,KSP)
+
+dp_output_bundle(O,T,PR,RS,KSP) :-
+    and(state_output_instance(T,transient_proposal_evaluation_report,PR),
+        state_output_instance(T,transient_raw_trace_serial,RS),
+        state_output_instance(T,transient_reusable_knowledge_proposal_bundle,KSP))
+
+SEQUENTIAL_EXTERNAL_ORCHESTRATION
+
+one_current_task_per_invocation(LML_PROPOSER)
+future_tasks_not_visible_to_current_invocation(LML_PROPOSER)
+
+external_sequence_step(
+    visible_knowledge_space_snapshot(KSi),
+    current_task_dspl(Ti),
+    LML_PROPOSER,
+    dp_output_bundle(Oi,Ti,PRi,RSi,KSPi))
+
+external_ks_update_step(
+    KSU,
+    current_knowledge_space(KSi),
+    complete_dp_output_bundle(Oi),
+    knowledge_space_delta(DELTAi),
+    next_visible_knowledge_space_snapshot(KSnext))
+
+next_invocation_visible_ks(KSnext)
+
+The proposer receives one current task and one externally prepared visible KS
+snapshot.  It is not given the future T1--T5 curriculum as a batch and it does
+not carry task-result memory internally.
+
+The procedure families F0, F1, F3, and F4 are fixed implementation mechanisms,
+but their applicability is not equivalent to pre-supplying a learned schema.
+In particular, Pair is only representation grammar; F3 must infer the
+componentwise ALL_ONCE regularity from complete exemplars, and F4 is gated by
+a reusable two-role structural-lifting schema admitted after such an episode.
+
+What may change between invocations is the visible KS produced by KSU from the
+preceding task's complete DP output bundle.
+
+The P0 specification is deterministic runtime code/configuration.  It is not
+concatenated with the task as an LLM prompt and it supplies no hidden task
+facts beyond the explicit current task, visible KS, and fixed P0 code.
+
+KSU behavior, admission modes, persistent identifier assignment, permanent
+trace materialization, and KS commit semantics are defined by KSU_SPEC_v03.
+%</src_p0state>
+
+
+%<*src_p0end>
+P0_END
+%</src_p0end>

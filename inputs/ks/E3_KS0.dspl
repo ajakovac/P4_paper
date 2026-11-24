@@ -1,0 +1,44 @@
+TYPE tau_L
+TYPE tau_N
+TYPE tau_LN
+TYPE tau_R
+TYPE tau_H
+
+ENTITY A
+QUALIFY A type tau_L
+ENTITY B
+QUALIFY B type tau_L
+ENTITY C
+QUALIFY C type tau_L
+ENTITY D
+QUALIFY D type tau_L
+ENTITY E
+QUALIFY E type tau_L
+ENTITY F
+QUALIFY F type tau_L
+
+NAT_RANGE 0 30
+
+ENTITY Rseq
+QUALIFY Rseq kind relation
+QUALIFY Rseq type tau_R
+RTYPE Rseq tau_L tau_L
+EDGE A Rseq B 1
+EDGE B Rseq C 1
+EDGE C Rseq D 1
+EDGE D Rseq E 1
+EDGE E Rseq F 1
+
+ENTITY Rord
+QUALIFY Rord kind relation
+QUALIFY Rord type tau_R
+RTYPE Rord tau_L tau_N
+EDGE A Rord 1 1
+EDGE B Rord 2 1
+EDGE C Rord 3 1
+EDGE D Rord 4 1
+EDGE E Rord 5 1
+EDGE F Rord 6 1
+
+PRIMITIVE ADD_NAT
+PRIMITIVE MUL_NAT

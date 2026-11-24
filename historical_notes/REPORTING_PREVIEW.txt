@@ -1,0 +1,12 @@
+READER-FACING OUTCOMES
+
+NO SOLUTION FOUND - local KS-based solution not found.
+SOLUTION FOUND BUT REJECTED - no admissible KS-based derivation.
+SOLUTION FOUND - used [represented rules/procedures/composition].
+
+Technical failures are kept separate from scientific outcomes:
+EXECUTION ERROR - proposer response not obtained.
+
+READER_DIAGNOSIS.txt contains only the compact human-readable result.
+E2_READER_SUMMARY.txt / E3_READER_SUMMARY.txt collect those lines for a full experiment.
+Detailed diagnostic codes and stderr/stdout remain in the audit/check bundles.

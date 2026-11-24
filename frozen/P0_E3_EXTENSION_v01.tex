@@ -1,0 +1,171 @@
+% P0 E3 composition extension, version 0.1
+% Active only for tasks explicitly tagged profile E3_COMPOSITION.
+P0_E3_EXTENSION_BEGIN
+
+E3_SCOPE
+profile(E3_COMPOSITION)
+This extension adds a restricted E3 task profile without changing the T1--T6
+semantics of P0 v0.14.  It is active only when CURRENT_TASK contains
+QUALIFY T profile E3_COMPOSITION.
+
+E3_PROFILE_OVERRIDE
+For an invocation whose CURRENT_TASK is tagged E3_COMPOSITION, the E3 local
+candidate, derivation, reuse, failure, and bounded-construction clauses below
+replace only the T1--T6-specific F0/F1/F3/F4 generation and construction
+clauses for that invocation.  The generic P0 evaluation checks, deterministic
+selection discipline, proposal-only authority, trace obligations, and external
+KSU boundary remain in force.  For every non-E3 invocation this extension is
+inactive and P0 v0.14 is unchanged.
+
+E3_TYPES
+FOR tau IN [tau_L,tau_N,tau_LN] DO type(tau)
+
+E3_KS_FORMS
+nat_range(A,B)
+letter_ordinal(R,L,N)
+primitive(ADD_NAT)
+primitive(MUL_NAT)
+reusable_e3_procedure(H,Fam)
+
+The visible KS represents letter succession only by the edges of Rseq and
+letter sequence number only by the edges of Rord.  No alphabetic order or
+letter number may be imported from pretrained knowledge or surface spelling.
+NAT_RANGE a b represents exactly the integer literals n satisfying a <= n <= b.
+ADD_NAT and MUL_NAT are fixed elementary procedures over represented integer
+literals.  They introduce no letter semantics.
+
+E3_TASK_FORMS
+E3_EXAMPLE_L2_TO_L(T,L1,L2,O)
+E3_QUERY_L2_TO_L(T,X,L1,L2)
+E3_EXAMPLE_LN_TO_N(T,L,N,O)
+E3_QUERY_LN_TO_N(T,X,L,N)
+E3_EXAMPLE_LLN_TO_LN(T,L1,L2,N,OL,ON)
+E3_QUERY_LLN_TO_LN(T,X,L1,L2,N)
+E3_EXAMPLE_LNLN_TO_LN(T,L1,N1,L2,N2,OL,ON)
+E3_QUERY_LNLN_TO_LN(T,X,L1,N1,L2,N2)
+
+E3_REPRESENTATION
+LN_TOKEN(L,N,S) is the canonical serialization of a letter-number output as
+one token, e.g. LN_TOKEN(D,28,D28).  LN_TOKEN is representation only and does
+not supply a solution.  A letter-number token may be formed only after both
+its letter and integer components have been derived by an admissible route.
+
+E3_DERIVED_RELATIONS
+seq_next(L,L2) :- edge(L,Rseq,L2,1)
+seq_reachable(L,L) :- otype(L,tau_L)
+seq_reachable(L,L3) :- and(seq_next(L,L2),seq_reachable(L2,L3))
+seq_later(L1,L2,L2) :- seq_reachable(L1,L2)
+seq_later(L1,L2,L1) :- and(seq_reachable(L2,L1),not(seq_reachable(L1,L2)))
+ord_value(L,N) :- edge(L,Rord,N,1)
+
+E3_PROCEDURE_SEMANTICS
+HL_value(L1,L2,O) :-
+    and(seq_later(L1,L2,L),seq_next(L,O))
+
+HW_value(L,N,O) :-
+    and(ord_value(L,W),primitive(MUL_NAT),O = W*N)
+
+HC_value(L1,L2,N,OL,ON) :-
+    and(HL_value(L1,L2,OL),
+        HW_value(L1,N,N1),
+        HW_value(L2,N,N2),
+        primitive(ADD_NAT),
+        ON = N1+N2)
+
+HI_value(L1,N1,L2,N2,OL,ON) :-
+    and(HL_value(L1,L2,OL),
+        HW_value(L1,N1,M1),
+        HW_value(L2,N2,M2),
+        primitive(ADD_NAT),
+        ON = M1+M2)
+
+E3_REUSABLE_FAMILIES
+procedure_family(e3_later_successor_letter)
+procedure_family(e3_letter_weight)
+procedure_family(e3_common_argument_composition)
+procedure_family(e3_independent_argument_composition)
+
+A visible procedure H is reusable in E3 only when VISIBLE_KS explicitly
+contains PROCEDURE H, QUALIFY H kind procedure, QUALIFY H status supported,
+QUALIFY H proposal_source true, and its exact procedure_family.
+
+E3_LOCAL_SEARCH
+For a task with form L2_TO_L, local reuse is licensed only by a visible
+supported procedure of family e3_later_successor_letter.  Its hypothesis is
+E3_REUSE(T,H).
+
+For a task with form LN_TO_N, local reuse is licensed only by a visible
+supported procedure of family e3_letter_weight.  Its hypothesis is
+E3_REUSE(T,H).
+
+For a task with form LLN_TO_LN, local reuse is licensed only by a visible
+supported procedure of family e3_common_argument_composition.  Its hypothesis
+is E3_REUSE(T,H).
+
+For a task with form LNLN_TO_LN, local reuse is licensed only by a visible
+supported procedure of family e3_independent_argument_composition.  Its
+hypothesis is E3_REUSE(T,H).
+
+A local E3 candidate is admissible only if its procedure reproduces every
+represented example of the current task, derives the query binding, uses only
+represented Rseq/Rord facts and represented elementary procedures, and passes
+proposal_complete, type_compatible, satisfies_givens, satisfies_constraints,
+and derivation_supported.
+
+E3_BOUNDED_CONSTRUCTION
+Construction is entered only after complete local failure and only when
+CONSTRUCTION_CONTROL is enabled.
+
+For L2_TO_L, construction may propose exactly one procedure description of
+family e3_later_successor_letter when the procedure HL_value reproduces every
+represented example and derives the query.  Required represented parents are
+Rseq.  The dependent solution is the derived query output.
+
+For LN_TO_N, construction may propose exactly one procedure description of
+family e3_letter_weight when HW_value reproduces every represented example and
+derives the query.  Required represented parents are Rord and MUL_NAT.  The
+dependent solution is the derived query output.
+
+For LLN_TO_LN, construction may propose exactly one procedure description of
+family e3_common_argument_composition when visible supported procedures of
+families e3_later_successor_letter and e3_letter_weight are present and
+HC_value reproduces every represented example and derives the query.  Required
+represented parents are those two reusable procedures and ADD_NAT.  The
+dependent solution is the canonical LN_TOKEN of the derived components.
+
+For LNLN_TO_LN, construction may propose exactly one procedure description of
+family e3_independent_argument_composition when visible supported procedures of
+families e3_later_successor_letter and e3_letter_weight are present and
+HI_value reproduces every represented example and derives the query.  Required
+represented parents are those two reusable procedures and ADD_NAT.  The
+dependent solution is the canonical LN_TOKEN of the derived components.
+
+Construction does not silently generalize one E3 procedure family to another.
+In particular, e3_common_argument_composition has input signature
+(L1,L2,N) and does not license the independent-argument signature
+(L1,N1,L2,N2).
+
+E3_PROPOSAL_AND_PERSISTENCE
+A construction proposal is proposal-only.  The knowledge_proposal_bundle item
+has kind procedure and states the exact procedure_family and represented parent
+objects/procedures.  The proposer does not make the new procedure persistent.
+External KSU assigns the canonical identifiers H_L, H_W, H_C, and H_I to
+admitted E3 procedures in curriculum order.
+
+A successful E3 reuse episode does not automatically create another reusable
+object.  The raw trace records the reused procedure and represented support.
+
+E3_FAILURE
+If no licensed local reusable procedure derives the query and construction is
+disabled, local_outcome is no_local_solution and construction_phase.status is
+disabled.  A plausible answer supplied only by pretrained model knowledge is
+not an admissible Medium-Solver solution.
+
+E3_OUTPUT
+All E3 outputs use the existing LML_PROPOSER_TRANSITION_V02 schema.  For a
+local reuse solution, selected contains E3_REUSE(T,H) and the exact binding.
+For a construction solution, selected is empty, construction_phase.status is
+construction_proposed, dependent_solution contains the exact binding, and the
+knowledge_proposal_bundle contains the proposed procedure description.
+
+P0_E3_EXTENSION_END

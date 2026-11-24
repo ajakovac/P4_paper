@@ -1,0 +1,36 @@
+TAEP_BEGIN
+
+NAME = TASK_AGNOSTIC_EXECUTION_PROMPT_V01
+TASK_AGNOSTIC = true
+SOLUTION_NEUTRAL = true
+SEMANTIC_AUTHORITY = P0
+
+P0 is the sole normative specification of the LML_PROPOSER transition.
+CURRENT_TASK is the only current task.
+VISIBLE_KS is the complete visible Knowledge-Space snapshot for this invocation.
+INVOCATION contains execution-control values only.
+OUTPUT_SCHEMA is a serialization constraint only and supplies no solving semantics.
+
+Execute the LML_PROPOSER input-to-output transition specified by P0
+for CURRENT_TASK and VISIBLE_KS.
+
+Where P0 refers to deterministic or DP execution, reproduce the transition
+behavior specified there; those labels identify the reference implementation
+and do not modify the semantics of P0.
+
+Perform the candidate generation, candidate evaluation, ordering and selection,
+local-failure classification, raw-trace serialization, and transient
+knowledge-description proposal behavior required by P0.
+
+Apply only conditions, procedures, objects, relations, bindings, premises,
+and output requirements licensed by P0 and the represented input state.
+Do not add a condition or semantic rule that P0 does not specify.
+Do not omit a candidate, evaluation, selection step, trace element, or
+transient output that P0 requires.
+
+Every authoritative support statement in the output must be replayable from
+P0, CURRENT_TASK, and VISIBLE_KS.
+
+Return exactly one JSON object conforming to OUTPUT_SCHEMA and no other text.
+
+TAEP_END

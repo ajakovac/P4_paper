@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {"type": "string", "enum": ["LLM_ENVELOPE_HEALTH_V01"]},
+    "status": {"type": "string", "enum": ["OK"]},
+    "canary_ascii": {"type": "string"},
+    "canary_utf8": {"type": "string"},
+    "canary_multiline": {"type": "string"}
+  },
+  "required": ["protocol", "status", "canary_ascii", "canary_utf8", "canary_multiline"],
+  "additionalProperties": false
+}

@@ -1,0 +1,151 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "string",
+      "enum": [
+        "KS_CHECKED_V09"
+      ]
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "SOLUTION",
+        "NO_LOCAL_SOLUTION"
+      ]
+    },
+    "route": {
+      "type": "string"
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "unknown": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "unknown",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "trace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "op",
+          "args",
+          "result"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "proposals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "input_type": {
+                "type": "string"
+              },
+              "output_type": {
+                "type": "string"
+              },
+              "uses_procedure": {
+                "type": "string"
+              },
+              "associated_relation": {
+                "type": "string"
+              },
+              "formation_kind": {
+                "type": "string"
+              },
+              "structure_constructor": {
+                "type": "string"
+              },
+              "structure_arity": {
+                "type": "string"
+              },
+              "selected_position": {
+                "type": "string"
+              },
+              "procedure_family": {
+                "type": "string"
+              },
+              "component_mode": {
+                "type": "string"
+              },
+              "parents": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "input_type",
+              "output_type",
+              "uses_procedure",
+              "associated_relation",
+              "formation_kind",
+              "structure_constructor",
+              "structure_arity",
+              "selected_position",
+              "procedure_family",
+              "component_mode",
+              "parents"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "protocol",
+    "task_id",
+    "outcome",
+    "route",
+    "binding",
+    "trace",
+    "proposals"
+  ],
+  "additionalProperties": false
+}

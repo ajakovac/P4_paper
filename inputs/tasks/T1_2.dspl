@@ -1,0 +1,59 @@
+ENTITY V6
+QUALIFY V6 type tau_V
+
+ENTITY V7
+QUALIFY V7 type tau_V
+
+ENTITY CX1C
+QUALIFY CX1C kind context
+QUALIFY CX1C type tau_CX
+QUALIFY CX1C base_type tau_V
+QUALIFY CX1C distinguishes_type tau_V
+QUALIFY CX1C member V1
+QUALIFY CX1C member V2
+QUALIFY CX1C member V3
+QUALIFY CX1C member V4
+QUALIFY CX1C member V5
+QUALIFY CX1C member V6
+QUALIFY CX1C member V7
+
+ENTITY RVup
+QUALIFY RVup kind relation
+QUALIFY RVup type tau_R
+RTYPE RVup tau_V tau_V
+QUALIFY RVup functional true
+
+EDGE V1 RVup V2 1
+
+EDGE V2 RVup V3 1
+
+EDGE V3 RVup V4 1
+
+EDGE V4 RVup V5 1
+
+EDGE V5 RVup V6 1
+
+EDGE V6 RVup V7 1
+
+EDGE V7 RVup V1 1
+
+ENTITY U1_2
+QUALIFY U1_2 kind stream
+QUALIFY U1_2 type Stream(tau_V)
+AT U1_2 I0 V6
+AT U1_2 I1 V7
+AT U1_2 I2 V1
+
+ENTITY T1_2
+QUALIFY T1_2 kind task
+QUALIFY T1_2 context CX1C
+QUALIFY T1_2 input U1_2
+QUALIFY T1_2 available_relation R0
+QUALIFY T1_2 available_relation R1
+QUALIFY T1_2 available_relation R2
+QUALIFY T1_2 available_relation RVup
+
+UNKNOWN_AT T1_2 X1_2 U1_2 I3 tau_V
+
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_2 U1_2
+QUALIFY T1_2 constraint C1_2

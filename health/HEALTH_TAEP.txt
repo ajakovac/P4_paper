@@ -1,0 +1,5 @@
+This is a transport-only envelope health test, not a solver task.
+For each canary block in HEALTH_PAYLOAD, copy exactly the text between its begin and end markers into the corresponding JSON field.
+Preserve every character exactly, including UTF-8 characters and the literal line break inside the multiline canary.
+Do not solve, infer, transform, normalize, translate, or explain anything.
+Return only one JSON object conforming to the supplied health schema.

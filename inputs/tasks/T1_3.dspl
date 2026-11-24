@@ -1,0 +1,41 @@
+ENTITY RVdown
+QUALIFY RVdown kind relation
+QUALIFY RVdown type tau_R
+RTYPE RVdown tau_V tau_V
+QUALIFY RVdown functional true
+
+EDGE V1 RVdown V7 1
+
+EDGE V2 RVdown V1 1
+
+EDGE V3 RVdown V2 1
+
+EDGE V4 RVdown V3 1
+
+EDGE V5 RVdown V4 1
+
+EDGE V6 RVdown V5 1
+
+EDGE V7 RVdown V6 1
+
+ENTITY U1_3
+QUALIFY U1_3 kind stream
+QUALIFY U1_3 type Stream(tau_V)
+AT U1_3 I0 V2
+AT U1_3 I1 V1
+AT U1_3 I2 V7
+
+ENTITY T1_3
+QUALIFY T1_3 kind task
+QUALIFY T1_3 context CX1C
+QUALIFY T1_3 input U1_3
+QUALIFY T1_3 available_relation R0
+QUALIFY T1_3 available_relation R1
+QUALIFY T1_3 available_relation R2
+QUALIFY T1_3 available_relation RVup
+QUALIFY T1_3 available_relation RVdown
+
+UNKNOWN_AT T1_3 X1_3 U1_3 I3 tau_V
+
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_3 U1_3
+QUALIFY T1_3 constraint C1_3

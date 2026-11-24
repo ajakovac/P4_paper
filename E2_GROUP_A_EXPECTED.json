@@ -1,0 +1,9 @@
+{
+  "E2T1": {"expected_ms_decision": "ACCEPT", "primary": "OK00 SUPPORTED", "expected_binding": "XE2T1=A2V2"},
+  "E2T2": {"expected_ms_decision": "ACCEPT", "primary": "OK00 SUPPORTED", "expected_binding": "XE2T2=A5V4"},
+  "E2T3": {"expected_ms_decision": "REJECT", "primary": "E05 NO SUPPORT", "control": "wrong value in complete reference stream"},
+  "E2T4": {"expected_ms_decision": "REJECT", "primary": "E05 NO SUPPORT", "control": "duplicated target component"},
+  "E2T5": {"expected_ms_decision": "REJECT", "primary": "E07 TYPE MISMATCH", "control": "wrongly typed pair in homogeneous stream"},
+  "E2T6": {"expected_ms_decision": "REJECT", "primary": "E01 NON-KS ELEMENT", "control": "residual pair not explicitly represented"},
+  "E2T7": {"expected_ms_decision": "REJECT", "primary": "E01 NON-KS ELEMENT", "control": "E2T6 plus non-semantic meta canary; E02 only when directly evidenced in proposer output"}
+}

@@ -1,0 +1,316 @@
+--- /mnt/data/AI_P0_T1_T6_pipeline_MS_v05_P0v14_2026-09-20/spec/P0_consolidated_T1_T6_v13.tex	2026-09-20 05:46:16.813866177 +0000
++++ /mnt/data/AI_P0_T1_T6_pipeline_MS_v05_P0v14_2026-09-20/spec/P0_consolidated_T1_T6_v14.tex	2026-09-20 06:54:22.928177651 +0000
+@@ -1,4 +1,4 @@
+-% P0 consolidated T1-T6 operational specification, version 0.13
++% P0 consolidated T1-T6 operational specification, version 0.14
+ %<*src_p0layout>
+ P0_BEGIN
+ 
+@@ -280,6 +280,259 @@
+ assessment_result(fail)
+ assessment_result(unresolved)
+ 
++PROPOSAL_AND_COMPLETED_VIEW_HELPERS
++
++proposal_stream(F0(U,R),U)
++proposal_stream(F1(T,U,K),U)
++proposal_stream(F3(T,U),U)
++proposal_stream(F4(T,U),U)
++
++proposal_relation_support(F0(U,R),U,R)
++
++represented_stream_position(T,U,I) :-
++    val(U,I,V)
++
++represented_stream_position(T,U,I) :-
++    and(task_unknown(T,X),
++        unknown_location(X,U,I))
++
++completed_stream_value(T,X,O,U,I,O) :-
++    and(task_unknown(T,X),
++        unknown_location(X,U,I))
++
++completed_stream_value(T,X,O,U,I,V) :-
++    and(val(U,I,V),
++        not(and(task_unknown(T,X),
++                unknown_location(X,U,I))))
++
++completed_component_value(T,X,O,U,I,k,V) :-
++    and(completed_stream_value(T,X,O,U,I,P),
++        project_role(P,k,V))
++
++completed_stream_total(T,X,O,U) :-
++    forall(I,
++        implies(represented_stream_position(T,U,I),
++                exists(V,completed_stream_value(T,X,O,U,I,V))))
++
++all_completed_values_projectable(T,X,O,U,k) :-
++    forall(I,
++        implies(represented_stream_position(T,U,I),
++                exists(V,completed_component_value(T,X,O,U,I,k,V))))
++
++component_occurrence_count(T,X,O,U,k,V,N) :-
++    cardinality(
++        setof(I,completed_component_value(T,X,O,U,I,k,V)),
++        N)
++
++complete_position_chain(T,U)
++
++complete_position_chain(T,U) holds iff the represented positions of U,
++including the current unknown position, form one finite immediate-successor
++chain under position_next: there is exactly one initial position, exactly one
++final position, every noninitial position has exactly one represented
++predecessor, every nonfinal position has exactly one represented successor,
++and every represented position is reachable from the unique initial position.
++If this cannot be established from the represented state, a constraint whose
++semantics require the complete chain is unresolved rather than passed.
++
++EXPLICIT_EVALUATOR_SEMANTICS
++
++single_task_unknown(T,X) :-
++    and(task_unknown(T,X),
++        cardinality(setof(X0,task_unknown(T,X0)),1))
++
++evaluate_proposal_complete(T,H,X,O,pass) :-
++    single_task_unknown(T,X)
++
++evaluate_proposal_complete(T,H,X,O,fail) :-
++    not(single_task_unknown(T,X))
++
++evaluate_type_compatible(T,H,X,O,pass) :-
++    and(task_unknown(T,X),
++        unknown_type(X,tau),
++        otype(O,tau))
++
++evaluate_type_compatible(T,H,X,O,fail) :-
++    not(and(task_unknown(T,X),
++            unknown_type(X,tau),
++            otype(O,tau)))
++
++candidate_overwrites_given(T,H,X,O) :-
++    and(task_unknown(T,X),
++        unknown_location(X,U,I),
++        proposal_stream(H,U),
++        val(U,I,V),
++        V != O)
++
++evaluate_satisfies_givens(T,H,X,O,pass) :-
++    and(task_unknown(T,X),
++        unknown_location(X,U,I),
++        proposal_stream(H,U),
++        not(candidate_overwrites_given(T,H,X,O)))
++
++evaluate_satisfies_givens(T,H,X,O,fail) :-
++    not(and(task_unknown(T,X),
++            unknown_location(X,U,I),
++            proposal_stream(H,U),
++            not(candidate_overwrites_given(T,H,X,O))))
++
++KNOWN_CONSTRAINT_FORMS
++known_constraint_form(C) :-
++    constraint_same_relation_successive(C,U)
++known_constraint_form(C) :-
++    constraint_component_all_once(C,U,k,CX)
++known_constraint_form(C) :-
++    constraint_component_relation(C,U,k,R)
++
++SAME_RELATION_SUCCESSIVE_SEMANTICS
++
++same_relation_successive_holds(T,C,H,X,O) :-
++    and(constraint_same_relation_successive(C,U),
++        proposal_relation_support(H,U,R),
++        complete_position_chain(T,U),
++        completed_stream_total(T,X,O,U),
++        forall(I,
++            forall(J,
++                implies(and(position_next(I,J),
++                            represented_stream_position(T,U,I),
++                            represented_stream_position(T,U,J)),
++                        exists(VI,
++                            exists(VJ,
++                                and(completed_stream_value(T,X,O,U,I,VI),
++                                    completed_stream_value(T,X,O,U,J,VJ),
++                                    exists(w,edge(VI,R,VJ,w)))))))))
++
++constraint_check(T,C,H,X,O,pass) :-
++    and(task_constraint(T,C),
++        constraint_same_relation_successive(C,U),
++        same_relation_successive_holds(T,C,H,X,O))
++
++constraint_check(T,C,H,X,O,fail) :-
++    and(task_constraint(T,C),
++        constraint_same_relation_successive(C,U),
++        proposal_relation_support(H,U,R),
++        complete_position_chain(T,U),
++        completed_stream_total(T,X,O,U),
++        not(same_relation_successive_holds(T,C,H,X,O)))
++
++constraint_check(T,C,H,X,O,unresolved) :-
++    and(task_constraint(T,C),
++        constraint_same_relation_successive(C,U),
++        not(and(proposal_relation_support(H,U,R),
++                complete_position_chain(T,U),
++                completed_stream_total(T,X,O,U))))
++
++COMPONENT_ALL_ONCE_SEMANTICS
++
++component_all_once_holds(T,C,X,O) :-
++    and(constraint_component_all_once(C,U,k,CX),
++        all_completed_values_projectable(T,X,O,U,k),
++        forall(V,
++            implies(context_member(CX,V),
++                    component_occurrence_count(T,X,O,U,k,V,1))),
++        forall(V,
++            implies(exists(I,completed_component_value(T,X,O,U,I,k,V)),
++                    context_member(CX,V))))
++
++constraint_check(T,C,H,X,O,pass) :-
++    and(task_constraint(T,C),
++        constraint_component_all_once(C,U,k,CX),
++        component_all_once_holds(T,C,X,O))
++
++constraint_check(T,C,H,X,O,fail) :-
++    and(task_constraint(T,C),
++        constraint_component_all_once(C,U,k,CX),
++        all_completed_values_projectable(T,X,O,U,k),
++        not(component_all_once_holds(T,C,X,O)))
++
++constraint_check(T,C,H,X,O,unresolved) :-
++    and(task_constraint(T,C),
++        constraint_component_all_once(C,U,k,CX),
++        not(all_completed_values_projectable(T,X,O,U,k)))
++
++COMPONENT_RELATION_SEMANTICS
++
++component_relation_holds(T,C,X,O) :-
++    and(constraint_component_relation(C,U,k,R),
++        complete_position_chain(T,U),
++        all_completed_values_projectable(T,X,O,U,k),
++        forall(I,
++            forall(J,
++                implies(and(position_next(I,J),
++                            represented_stream_position(T,U,I),
++                            represented_stream_position(T,U,J)),
++                        exists(VI,
++                            exists(VJ,
++                                and(completed_component_value(T,X,O,U,I,k,VI),
++                                    completed_component_value(T,X,O,U,J,k,VJ),
++                                    exists(w,edge(VI,R,VJ,w)))))))))
++
++constraint_check(T,C,H,X,O,pass) :-
++    and(task_constraint(T,C),
++        constraint_component_relation(C,U,k,R),
++        component_relation_holds(T,C,X,O))
++
++constraint_check(T,C,H,X,O,fail) :-
++    and(task_constraint(T,C),
++        constraint_component_relation(C,U,k,R),
++        complete_position_chain(T,U),
++        all_completed_values_projectable(T,X,O,U,k),
++        not(component_relation_holds(T,C,X,O)))
++
++constraint_check(T,C,H,X,O,unresolved) :-
++    and(task_constraint(T,C),
++        constraint_component_relation(C,U,k,R),
++        not(and(complete_position_chain(T,U),
++                all_completed_values_projectable(T,X,O,U,k))))
++
++constraint_check(T,C,H,X,O,unresolved) :-
++    and(task_constraint(T,C),
++        not(known_constraint_form(C)))
++
++COMPLETE_TASK_CONSTRAINT_EVALUATION
++
++evaluate_satisfies_constraints(T,H,X,O,pass) :-
++    forall(C,
++        implies(task_constraint(T,C),
++                constraint_check(T,C,H,X,O,pass)))
++
++evaluate_satisfies_constraints(T,H,X,O,fail) :-
++    exists(C,
++        and(task_constraint(T,C),
++            constraint_check(T,C,H,X,O,fail)))
++
++evaluate_satisfies_constraints(T,H,X,O,unresolved) :-
++    and(not(exists(C,
++            and(task_constraint(T,C),
++                constraint_check(T,C,H,X,O,fail)))),
++        exists(C,
++            and(task_constraint(T,C),
++                constraint_check(T,C,H,X,O,unresolved))))
++
++DERIVATION_REPLAY_SEMANTICS
++
++evaluate_derivation_supported(T,H,X,O,pass) :-
++    derives_binding(T,H,X,O)
++
++evaluate_derivation_supported(T,H,X,O,fail) :-
++    not(derives_binding(T,H,X,O))
++
++Every pass result above is a property of the complete proposal tuple
++(T,H,X,O), not merely of the proposed value O.  Equality of O with the value
++of another valid proposal does not validate H.  A proposal route survives only
++when that route is an admissible candidate and all represented task constraints
++pass for the completed task state.
++
++The evaluator is representation-grounded.  A pass may use only P0, the current
++task, the visible KS, and premises or derivation witnesses licensed by them.
++An unsupported external premise, an omitted represented constraint, or an
++unresolved required condition cannot be converted into pass.
++
++Proposal validity is determined by P0 and the represented state, not by whether
++a reference implementation happened to select the same proposal.  A proposal
++not selected by a reference implementation may still be valid if it is an
++admissible candidate under the active P0 and passes every required check.
++
+ CHECK_BINDINGS
+ check_result(T,H,X,O,proposal_complete,R) :-
+     evaluate_proposal_complete(T,H,X,O,R)
+@@ -389,6 +642,17 @@
+         reusable_use(K,proposal_source),
+         well_formed(T,F1(T,U,K)))
+ 
++FINITE_CANDIDATE_HYPOTHESIS_CLOSURE
++
++The four candidate_hypothesis clauses above are exhaustive for this restricted
++profile.  No rule expression enters the candidate-hypothesis set unless it is
++generated by one of those clauses.  In particular, a reusable object does not
++license F1 on an input whose represented type fails the explicit F1
++candidate_hypothesis type condition.  This closure constrains admissibility;
++it does not require a future stronger proposer to use the same search strategy
++as the reference deterministic implementation if a later P0 explicitly adds
++new candidate families.
++
+ STREAM_AND_PAIR_HELPERS
+ 
+ stream_component_value(U,I,1,O1) :-
+@@ -1584,6 +1848,28 @@
+ %</src_p0v13note>
+ 
+ 
++\subsubsection{Version 0.14 evaluator-semantics note}
++
++%<*src_p0v14note>
++P0_V014_EVALUATOR_SEMANTICS
++
++Version 0.14 makes the five required local-evaluation checks operationally
++explicit and closes the finite candidate-hypothesis set under the four stated
++generation clauses.  In particular, satisfies_constraints is evaluation of
++all represented constraints over the completed candidate task state; for a
++same-relation constraint the relation committed to by the proposal support
++must hold on every represented successive position.  A correct output value
++does not validate an invalid derivation route.
++
++These clauses define validity rather than a preferred search algorithm.  A
++proposal need not coincide with a reference implementation's selected output
++to be valid, but it must be admitted by the active P0 candidate rules and pass
++all five required checks.  Version 0.14 adds no task identifier, expected
++answer, curriculum-stage condition, new proposal family, new KS object kind,
++or new construction mechanism.
++%</src_p0v14note>
++
++
+ %<*src_p0end>
+ P0_END
+ %</src_p0end>
+\ No newline at end of file

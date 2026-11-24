@@ -1,0 +1,8 @@
+{
+  "E3T1": {"formal_result": "XE3T1=E", "mode": "construction", "admit": "H_L"},
+  "E3T2": {"formal_result": "XE3T2=10", "mode": "construction", "admit": "H_W"},
+  "E3T3_pre": {"formal_result": "no_local_ks_solution", "mode": "existing_ks_only", "admit": null},
+  "E3T3_build": {"formal_result": "XE3T3=D28", "mode": "construction", "admit": "H_C"},
+  "E3T3_post": {"formal_result": "XE3T3=D28", "mode": "reuse", "admit": null},
+  "E3T4": {"formal_result": "XE3T4=C8", "mode": "construction", "admit": "H_I"}
+}

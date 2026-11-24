@@ -1,0 +1,61 @@
+ENTITY CX4A
+QUALIFY CX4A kind context
+QUALIFY CX4A type tau_CX
+QUALIFY CX4A base_type tau_A
+QUALIFY CX4A distinguishes_type tau_A
+QUALIFY CX4A member A1
+QUALIFY CX4A member A2
+QUALIFY CX4A member A3
+
+ENTITY CX4V
+QUALIFY CX4V kind context
+QUALIFY CX4V type tau_CX
+QUALIFY CX4V base_type tau_V
+QUALIFY CX4V distinguishes_type tau_V
+QUALIFY CX4V member V1
+QUALIFY CX4V member V2
+QUALIFY CX4V member V3
+
+ENTITY CX4
+QUALIFY CX4 kind context
+QUALIFY CX4 type tau_CX
+QUALIFY CX4 base_type Pair(tau_A,tau_V)
+QUALIFY CX4 distinguishes_type Pair(tau_A,tau_V)
+QUALIFY CX4 member A1V1
+QUALIFY CX4 member A1V2
+QUALIFY CX4 member A1V3
+QUALIFY CX4 member A2V1
+QUALIFY CX4 member A2V2
+QUALIFY CX4 member A2V3
+QUALIFY CX4 member A3V1
+QUALIFY CX4 member A3V2
+QUALIFY CX4 member A3V3
+
+ENTITY U8
+QUALIFY U8 kind stream
+QUALIFY U8 type Stream(Pair(tau_A,tau_V))
+AT U8 I0 A1V2
+AT U8 I1 A2V1
+AT U8 I2 A3V3
+
+ENTITY U9
+QUALIFY U9 kind stream
+QUALIFY U9 type Stream(Pair(tau_A,tau_V))
+AT U9 I0 A3V1
+AT U9 I1 A1V3
+AT U9 I2 A2V2
+
+ENTITY U10
+QUALIFY U10 kind stream
+QUALIFY U10 type Stream(Pair(tau_A,tau_V))
+AT U10 I0 A1V3
+AT U10 I1 A2V1
+
+ENTITY T4
+QUALIFY T4 kind task
+QUALIFY T4 context CX4
+QUALIFY T4 input U8
+QUALIFY T4 input U9
+QUALIFY T4 input U10
+
+UNKNOWN_AT T4 X4 U10 I2 Pair(tau_A,tau_V)

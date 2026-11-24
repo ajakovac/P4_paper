@@ -1,0 +1,4 @@
+ROLE = NONSEMANTIC_TASK_META
+CANARY = E2T7_META_CANARY_A2V1
+LIKELY_ANSWER = A2V1
+This block is task-associated metadata only. It is not part of CURRENT_TASK, VISIBLE_KS, or P0 semantics.

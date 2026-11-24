@@ -1,0 +1,1112 @@
+TYPE tau_A
+TYPE tau_B
+TYPE tau_CX
+TYPE tau_I
+TYPE tau_R
+TYPE tau_V
+ENTITY A1
+ENTITY A2
+ENTITY A3
+ENTITY A4
+ENTITY A5
+ENTITY A6
+ENTITY A7
+ENTITY B1
+ENTITY B2
+ENTITY B3
+ENTITY B4
+ENTITY CX1
+ENTITY CX14
+ENTITY CX1C
+ENTITY CX2
+ENTITY CX3
+ENTITY CX3A
+ENTITY CX3V
+ENTITY H10
+ENTITY H11
+ENTITY H12
+ENTITY H1rule
+ENTITY H2rule
+ENTITY H3rule
+ENTITY H4rule
+ENTITY H5
+ENTITY H6
+ENTITY H6rule
+ENTITY H7
+ENTITY H7rule
+ENTITY H8
+ENTITY H9
+ENTITY I0
+ENTITY I1
+ENTITY I2
+ENTITY I3
+ENTITY KSREF_083a3859ab04252d4e3152a237f80205b92e4deb714e21b73578af66bb0f6354
+ENTITY KSREF_14d6a5df7abdc445188a30b8ce0e79c963d79c86533cfbac50a89b76dad39d64
+ENTITY KSREF_152b40dcc20872f548ec84d06fbc966ed6788bee29cae608177084d6f5ce209c
+ENTITY KSREF_a1df9deed80ecb724a89dc16b6689f83622ac299847f5050f3f9ed11ca3eab28
+ENTITY KSREF_a4253121bcc0f5ad99c8fc1e9f3ba5d8a7665b7587c1b3b09d9124e923ff6cb4
+ENTITY KSREF_e1d06a835ddab7a6227b44e9094b8783a3659365cc80b3428c816e80243526a6
+ENTITY KSREF_f6d6c0875ef2001ee05447fefaf251ef781833da051ae5442e4c2b502560d2bc
+ENTITY OUT1
+ENTITY OUT2
+ENTITY OUT3
+ENTITY OUT4
+ENTITY OUT5
+ENTITY OUT6
+ENTITY OUT7
+ENTITY P1_1
+ENTITY P1_2
+ENTITY P1_3
+ENTITY P2_1
+ENTITY P2_2
+ENTITY P2_3
+ENTITY P3_1
+ENTITY P3_2
+ENTITY P3_3
+ENTITY P3_4
+ENTITY P4_1
+ENTITY P4_2
+ENTITY P5_1
+ENTITY P6_1
+ENTITY P7_1
+ENTITY R0
+ENTITY R1
+ENTITY R2
+ENTITY RA1
+ENTITY RUN1
+ENTITY RUN2
+ENTITY RUN3
+ENTITY RUN4
+ENTITY RUN5
+ENTITY RUN6
+ENTITY RUN7
+ENTITY RVdown
+ENTITY RVup
+ENTITY T1
+ENTITY T1_1
+ENTITY T1_2
+ENTITY T1_3
+ENTITY T1_4
+ENTITY T2
+ENTITY T3
+ENTITY TR1
+ENTITY TR2
+ENTITY TR3
+ENTITY TR4
+ENTITY TR5
+ENTITY TR6
+ENTITY TR7
+ENTITY U1
+ENTITY U14A
+ENTITY U14B
+ENTITY U14C
+ENTITY U1_1
+ENTITY U1_2
+ENTITY U1_3
+ENTITY U2
+ENTITY U3
+ENTITY U4
+ENTITY U5
+ENTITY U6
+ENTITY U7
+ENTITY V0
+ENTITY V1
+ENTITY V2
+ENTITY V3
+ENTITY V4
+ENTITY V5
+ENTITY V6
+ENTITY V7
+QUALIFY A1 type tau_A
+QUALIFY A1B1 type Pair(tau_A,tau_B)
+QUALIFY A1B2 type Pair(tau_A,tau_B)
+QUALIFY A1B3 type Pair(tau_A,tau_B)
+QUALIFY A1B4 type Pair(tau_A,tau_B)
+QUALIFY A1V1 type Pair(tau_A,tau_V)
+QUALIFY A1V2 type Pair(tau_A,tau_V)
+QUALIFY A1V3 type Pair(tau_A,tau_V)
+QUALIFY A1V4 type Pair(tau_A,tau_V)
+QUALIFY A1V5 type Pair(tau_A,tau_V)
+QUALIFY A1V6 type Pair(tau_A,tau_V)
+QUALIFY A1V7 type Pair(tau_A,tau_V)
+QUALIFY A2 type tau_A
+QUALIFY A2B1 type Pair(tau_A,tau_B)
+QUALIFY A2B2 type Pair(tau_A,tau_B)
+QUALIFY A2B3 type Pair(tau_A,tau_B)
+QUALIFY A2B4 type Pair(tau_A,tau_B)
+QUALIFY A2V1 type Pair(tau_A,tau_V)
+QUALIFY A2V2 type Pair(tau_A,tau_V)
+QUALIFY A2V3 type Pair(tau_A,tau_V)
+QUALIFY A2V4 type Pair(tau_A,tau_V)
+QUALIFY A2V5 type Pair(tau_A,tau_V)
+QUALIFY A2V6 type Pair(tau_A,tau_V)
+QUALIFY A2V7 type Pair(tau_A,tau_V)
+QUALIFY A3 type tau_A
+QUALIFY A3B1 type Pair(tau_A,tau_B)
+QUALIFY A3B2 type Pair(tau_A,tau_B)
+QUALIFY A3B3 type Pair(tau_A,tau_B)
+QUALIFY A3B4 type Pair(tau_A,tau_B)
+QUALIFY A3V1 type Pair(tau_A,tau_V)
+QUALIFY A3V2 type Pair(tau_A,tau_V)
+QUALIFY A3V3 type Pair(tau_A,tau_V)
+QUALIFY A3V4 type Pair(tau_A,tau_V)
+QUALIFY A3V5 type Pair(tau_A,tau_V)
+QUALIFY A3V6 type Pair(tau_A,tau_V)
+QUALIFY A3V7 type Pair(tau_A,tau_V)
+QUALIFY A4 type tau_A
+QUALIFY A4B1 type Pair(tau_A,tau_B)
+QUALIFY A4B2 type Pair(tau_A,tau_B)
+QUALIFY A4B3 type Pair(tau_A,tau_B)
+QUALIFY A4B4 type Pair(tau_A,tau_B)
+QUALIFY A4V1 type Pair(tau_A,tau_V)
+QUALIFY A4V2 type Pair(tau_A,tau_V)
+QUALIFY A4V3 type Pair(tau_A,tau_V)
+QUALIFY A4V4 type Pair(tau_A,tau_V)
+QUALIFY A4V5 type Pair(tau_A,tau_V)
+QUALIFY A4V6 type Pair(tau_A,tau_V)
+QUALIFY A4V7 type Pair(tau_A,tau_V)
+QUALIFY A5 type tau_A
+QUALIFY A5V1 type Pair(tau_A,tau_V)
+QUALIFY A5V2 type Pair(tau_A,tau_V)
+QUALIFY A5V3 type Pair(tau_A,tau_V)
+QUALIFY A5V4 type Pair(tau_A,tau_V)
+QUALIFY A5V5 type Pair(tau_A,tau_V)
+QUALIFY A5V6 type Pair(tau_A,tau_V)
+QUALIFY A5V7 type Pair(tau_A,tau_V)
+QUALIFY A6 type tau_A
+QUALIFY A6V1 type Pair(tau_A,tau_V)
+QUALIFY A6V2 type Pair(tau_A,tau_V)
+QUALIFY A6V3 type Pair(tau_A,tau_V)
+QUALIFY A6V4 type Pair(tau_A,tau_V)
+QUALIFY A6V5 type Pair(tau_A,tau_V)
+QUALIFY A6V6 type Pair(tau_A,tau_V)
+QUALIFY A6V7 type Pair(tau_A,tau_V)
+QUALIFY A7 type tau_A
+QUALIFY A7V1 type Pair(tau_A,tau_V)
+QUALIFY A7V2 type Pair(tau_A,tau_V)
+QUALIFY A7V3 type Pair(tau_A,tau_V)
+QUALIFY A7V4 type Pair(tau_A,tau_V)
+QUALIFY A7V5 type Pair(tau_A,tau_V)
+QUALIFY A7V6 type Pair(tau_A,tau_V)
+QUALIFY A7V7 type Pair(tau_A,tau_V)
+QUALIFY B1 type tau_B
+QUALIFY B2 type tau_B
+QUALIFY B3 type tau_B
+QUALIFY B4 type tau_B
+QUALIFY CX1 base_type tau_V
+QUALIFY CX1 distinguishes_type tau_V
+QUALIFY CX1 kind context
+QUALIFY CX1 member V0
+QUALIFY CX1 member V1
+QUALIFY CX1 member V2
+QUALIFY CX1 member V3
+QUALIFY CX1 member V4
+QUALIFY CX1 member V5
+QUALIFY CX1 type tau_CX
+QUALIFY CX14 base_type Pair(tau_A,tau_B)
+QUALIFY CX14 distinguishes_type Pair(tau_A,tau_B)
+QUALIFY CX14 kind context
+QUALIFY CX14 member A1B1
+QUALIFY CX14 member A1B2
+QUALIFY CX14 member A1B3
+QUALIFY CX14 member A2B1
+QUALIFY CX14 member A2B2
+QUALIFY CX14 member A2B3
+QUALIFY CX14 member A3B1
+QUALIFY CX14 member A3B2
+QUALIFY CX14 member A3B3
+QUALIFY CX14 type tau_CX
+QUALIFY CX1C base_type tau_V
+QUALIFY CX1C distinguishes_type tau_V
+QUALIFY CX1C kind context
+QUALIFY CX1C member V1
+QUALIFY CX1C member V2
+QUALIFY CX1C member V3
+QUALIFY CX1C member V4
+QUALIFY CX1C member V5
+QUALIFY CX1C member V6
+QUALIFY CX1C member V7
+QUALIFY CX1C type tau_CX
+QUALIFY CX2 base_type Pair(tau_A,tau_B)
+QUALIFY CX2 distinguishes_type Pair(tau_A,tau_B)
+QUALIFY CX2 kind context
+QUALIFY CX2 member A1B1
+QUALIFY CX2 member A1B2
+QUALIFY CX2 member A1B3
+QUALIFY CX2 member A1B4
+QUALIFY CX2 member A2B1
+QUALIFY CX2 member A2B2
+QUALIFY CX2 member A2B3
+QUALIFY CX2 member A2B4
+QUALIFY CX2 member A3B1
+QUALIFY CX2 member A3B2
+QUALIFY CX2 member A3B3
+QUALIFY CX2 member A3B4
+QUALIFY CX2 member A4B1
+QUALIFY CX2 member A4B2
+QUALIFY CX2 member A4B3
+QUALIFY CX2 member A4B4
+QUALIFY CX2 type tau_CX
+QUALIFY CX3 base_type Pair(tau_A,tau_V)
+QUALIFY CX3 distinguishes_type Pair(tau_A,tau_V)
+QUALIFY CX3 kind context
+QUALIFY CX3 member A1V1
+QUALIFY CX3 member A1V2
+QUALIFY CX3 member A1V3
+QUALIFY CX3 member A1V4
+QUALIFY CX3 member A1V5
+QUALIFY CX3 member A1V6
+QUALIFY CX3 member A1V7
+QUALIFY CX3 member A2V1
+QUALIFY CX3 member A2V2
+QUALIFY CX3 member A2V3
+QUALIFY CX3 member A2V4
+QUALIFY CX3 member A2V5
+QUALIFY CX3 member A2V6
+QUALIFY CX3 member A2V7
+QUALIFY CX3 member A3V1
+QUALIFY CX3 member A3V2
+QUALIFY CX3 member A3V3
+QUALIFY CX3 member A3V4
+QUALIFY CX3 member A3V5
+QUALIFY CX3 member A3V6
+QUALIFY CX3 member A3V7
+QUALIFY CX3 member A4V1
+QUALIFY CX3 member A4V2
+QUALIFY CX3 member A4V3
+QUALIFY CX3 member A4V4
+QUALIFY CX3 member A4V5
+QUALIFY CX3 member A4V6
+QUALIFY CX3 member A4V7
+QUALIFY CX3 member A5V1
+QUALIFY CX3 member A5V2
+QUALIFY CX3 member A5V3
+QUALIFY CX3 member A5V4
+QUALIFY CX3 member A5V5
+QUALIFY CX3 member A5V6
+QUALIFY CX3 member A5V7
+QUALIFY CX3 member A6V1
+QUALIFY CX3 member A6V2
+QUALIFY CX3 member A6V3
+QUALIFY CX3 member A6V4
+QUALIFY CX3 member A6V5
+QUALIFY CX3 member A6V6
+QUALIFY CX3 member A6V7
+QUALIFY CX3 member A7V1
+QUALIFY CX3 member A7V2
+QUALIFY CX3 member A7V3
+QUALIFY CX3 member A7V4
+QUALIFY CX3 member A7V5
+QUALIFY CX3 member A7V6
+QUALIFY CX3 member A7V7
+QUALIFY CX3 type tau_CX
+QUALIFY CX3A base_type tau_A
+QUALIFY CX3A distinguishes_type tau_A
+QUALIFY CX3A kind context
+QUALIFY CX3A member A1
+QUALIFY CX3A member A2
+QUALIFY CX3A member A3
+QUALIFY CX3A member A4
+QUALIFY CX3A member A5
+QUALIFY CX3A member A6
+QUALIFY CX3A member A7
+QUALIFY CX3A type tau_CX
+QUALIFY CX3V base_type tau_V
+QUALIFY CX3V distinguishes_type tau_V
+QUALIFY CX3V kind context
+QUALIFY CX3V member V1
+QUALIFY CX3V member V2
+QUALIFY CX3V member V3
+QUALIFY CX3V member V4
+QUALIFY CX3V member V5
+QUALIFY CX3V member V6
+QUALIFY CX3V member V7
+QUALIFY CX3V type tau_CX
+QUALIFY H10 formation_kind positional_projection
+QUALIFY H10 kind schema
+QUALIFY H10 proposal_source true
+QUALIFY H10 selected_position 2
+QUALIFY H10 source_trace TR5
+QUALIFY H10 status supported
+QUALIFY H10 structure_arity 2
+QUALIFY H10 structure_constructor Pair
+QUALIFY H10 uses_procedure PROJECT
+QUALIFY H11 component_mode all_once
+QUALIFY H11 input_type Stream(Pair(tau_A,tau_B))
+QUALIFY H11 kind schema
+QUALIFY H11 output_type Pair(tau_A,tau_B)
+QUALIFY H11 proposal_source true
+QUALIFY H11 source_trace TR6
+QUALIFY H11 status supported
+QUALIFY H11 structure_arity 2
+QUALIFY H11 uses_procedure F3
+QUALIFY H12 input_type Stream(Pair(tau_A,tau_V))
+QUALIFY H12 kind schema
+QUALIFY H12 output_type Pair(tau_A,tau_V)
+QUALIFY H12 proposal_source true
+QUALIFY H12 source_trace TR7
+QUALIFY H12 status supported
+QUALIFY H12 uses_procedure F4
+QUALIFY H1rule associated_relation R1
+QUALIFY H1rule input_type Stream(tau_V)
+QUALIFY H1rule kind rule
+QUALIFY H1rule kind schema
+QUALIFY H1rule output_type tau_V
+QUALIFY H1rule proposal_source true
+QUALIFY H1rule source_trace TR1
+QUALIFY H1rule status verified
+QUALIFY H1rule uses_procedure F0
+QUALIFY H2rule associated_relation R2
+QUALIFY H2rule input_type Stream(tau_V)
+QUALIFY H2rule kind rule
+QUALIFY H2rule kind schema
+QUALIFY H2rule output_type tau_V
+QUALIFY H2rule proposal_source true
+QUALIFY H2rule source_trace TR2
+QUALIFY H2rule status verified
+QUALIFY H2rule uses_procedure F0
+QUALIFY H3rule associated_relation RVup
+QUALIFY H3rule input_type Stream(tau_V)
+QUALIFY H3rule kind rule
+QUALIFY H3rule kind schema
+QUALIFY H3rule output_type tau_V
+QUALIFY H3rule proposal_source true
+QUALIFY H3rule source_trace TR3
+QUALIFY H3rule status verified
+QUALIFY H3rule uses_procedure F0
+QUALIFY H4rule associated_relation RVdown
+QUALIFY H4rule input_type Stream(tau_V)
+QUALIFY H4rule kind rule
+QUALIFY H4rule kind schema
+QUALIFY H4rule output_type tau_V
+QUALIFY H4rule proposal_source true
+QUALIFY H4rule source_trace TR4
+QUALIFY H4rule status verified
+QUALIFY H4rule uses_procedure F0
+QUALIFY H5 associated_relation R1
+QUALIFY H5 input_type Stream(tau_V)
+QUALIFY H5 kind schema
+QUALIFY H5 output_type tau_V
+QUALIFY H5 proposal_source true
+QUALIFY H5 source_trace TR1
+QUALIFY H5 status supported
+QUALIFY H5 uses_procedure F0
+QUALIFY H6 associated_relation R2
+QUALIFY H6 input_type Stream(tau_V)
+QUALIFY H6 kind schema
+QUALIFY H6 output_type tau_V
+QUALIFY H6 proposal_source true
+QUALIFY H6 source_trace TR2
+QUALIFY H6 status supported
+QUALIFY H6 uses_procedure F0
+QUALIFY H6rule input_type Stream(Pair(tau_A,tau_B))
+QUALIFY H6rule kind rule
+QUALIFY H6rule kind schema
+QUALIFY H6rule output_type Pair(tau_A,tau_B)
+QUALIFY H6rule proposal_source true
+QUALIFY H6rule source_trace TR6
+QUALIFY H6rule status verified
+QUALIFY H6rule uses_procedure F3
+QUALIFY H7 associated_relation RVup
+QUALIFY H7 input_type Stream(tau_V)
+QUALIFY H7 kind schema
+QUALIFY H7 output_type tau_V
+QUALIFY H7 proposal_source true
+QUALIFY H7 source_trace TR3
+QUALIFY H7 status supported
+QUALIFY H7 uses_procedure F0
+QUALIFY H7rule input_type Stream(Pair(tau_A,tau_V))
+QUALIFY H7rule kind rule
+QUALIFY H7rule kind schema
+QUALIFY H7rule output_type Pair(tau_A,tau_V)
+QUALIFY H7rule proposal_source true
+QUALIFY H7rule source_trace TR7
+QUALIFY H7rule status verified
+QUALIFY H7rule uses_procedure F4
+QUALIFY H8 associated_relation RVdown
+QUALIFY H8 input_type Stream(tau_V)
+QUALIFY H8 kind schema
+QUALIFY H8 output_type tau_V
+QUALIFY H8 proposal_source true
+QUALIFY H8 source_trace TR4
+QUALIFY H8 status supported
+QUALIFY H8 uses_procedure F0
+QUALIFY H9 formation_kind positional_projection
+QUALIFY H9 kind schema
+QUALIFY H9 proposal_source true
+QUALIFY H9 selected_position 1
+QUALIFY H9 source_trace TR5
+QUALIFY H9 status supported
+QUALIFY H9 structure_arity 2
+QUALIFY H9 structure_constructor Pair
+QUALIFY H9 uses_procedure PROJECT
+QUALIFY I0 type tau_I
+QUALIFY I1 type tau_I
+QUALIFY I2 type tau_I
+QUALIFY I3 type tau_I
+QUALIFY OUT1 kind outcome
+QUALIFY OUT2 kind outcome
+QUALIFY OUT3 kind outcome
+QUALIFY OUT4 kind outcome
+QUALIFY OUT5 kind outcome
+QUALIFY OUT6 kind outcome
+QUALIFY OUT7 kind outcome
+QUALIFY P1_1 assignment A1_1
+QUALIFY P1_1 for_task T1
+QUALIFY P1_1 kind proposal
+QUALIFY P1_1 support PA1_1
+QUALIFY P1_2 assignment A1_2
+QUALIFY P1_2 for_task T1
+QUALIFY P1_2 kind proposal
+QUALIFY P1_2 support PA1_2
+QUALIFY P1_3 assignment A1_3
+QUALIFY P1_3 for_task T1
+QUALIFY P1_3 kind proposal
+QUALIFY P1_3 support PA1_3
+QUALIFY P2_1 assignment A2_1
+QUALIFY P2_1 for_task T1_1
+QUALIFY P2_1 kind proposal
+QUALIFY P2_1 support PA2_1
+QUALIFY P2_2 assignment A2_2
+QUALIFY P2_2 for_task T1_1
+QUALIFY P2_2 kind proposal
+QUALIFY P2_2 support PA2_2
+QUALIFY P2_3 assignment A2_3
+QUALIFY P2_3 for_task T1_1
+QUALIFY P2_3 kind proposal
+QUALIFY P2_3 support PA2_3
+QUALIFY P3_1 assignment A3_1
+QUALIFY P3_1 for_task T1_2
+QUALIFY P3_1 kind proposal
+QUALIFY P3_1 support PA3_1
+QUALIFY P3_2 assignment A3_2
+QUALIFY P3_2 for_task T1_2
+QUALIFY P3_2 kind proposal
+QUALIFY P3_2 support PA3_2
+QUALIFY P3_3 assignment A3_3
+QUALIFY P3_3 for_task T1_2
+QUALIFY P3_3 kind proposal
+QUALIFY P3_3 support PA3_3
+QUALIFY P3_4 assignment A3_4
+QUALIFY P3_4 for_task T1_2
+QUALIFY P3_4 kind proposal
+QUALIFY P3_4 support PA3_4
+QUALIFY P4_1 assignment A4_1
+QUALIFY P4_1 for_task T1_3
+QUALIFY P4_1 kind proposal
+QUALIFY P4_1 support PA4_1
+QUALIFY P4_2 assignment A4_2
+QUALIFY P4_2 for_task T1_3
+QUALIFY P4_2 kind proposal
+QUALIFY P4_2 support PA4_2
+QUALIFY P5_1 assignment A5_1
+QUALIFY P5_1 for_task T1_4
+QUALIFY P5_1 kind proposal
+QUALIFY P5_1 support PA5_1
+QUALIFY P6_1 assignment A6_1
+QUALIFY P6_1 for_task T2
+QUALIFY P6_1 kind proposal
+QUALIFY P6_1 support PA6_1
+QUALIFY P7_1 assignment A7_1
+QUALIFY P7_1 for_task T3
+QUALIFY P7_1 kind proposal
+QUALIFY P7_1 support PA7_1
+QUALIFY R0 functional true
+QUALIFY R0 kind relation
+QUALIFY R0 reflexive true
+QUALIFY R0 type tau_R
+QUALIFY R1 functional true
+QUALIFY R1 kind relation
+QUALIFY R1 type tau_R
+QUALIFY R2 functional true
+QUALIFY R2 kind relation
+QUALIFY R2 type tau_R
+QUALIFY RA1 functional true
+QUALIFY RA1 kind relation
+QUALIFY RA1 type tau_R
+QUALIFY RUN1 generation_status complete
+QUALIFY RUN1 kind dp_run
+QUALIFY RUN2 generation_status complete
+QUALIFY RUN2 kind dp_run
+QUALIFY RUN3 generation_status complete
+QUALIFY RUN3 kind dp_run
+QUALIFY RUN4 generation_status complete
+QUALIFY RUN4 kind dp_run
+QUALIFY RUN5 generation_status complete
+QUALIFY RUN5 kind dp_run
+QUALIFY RUN6 generation_status complete
+QUALIFY RUN6 kind dp_run
+QUALIFY RUN7 generation_status complete
+QUALIFY RUN7 kind dp_run
+QUALIFY RVdown functional true
+QUALIFY RVdown kind relation
+QUALIFY RVdown type tau_R
+QUALIFY RVup functional true
+QUALIFY RVup kind relation
+QUALIFY RVup type tau_R
+QUALIFY T1 available_relation R0
+QUALIFY T1 available_relation R1
+QUALIFY T1 available_relation R2
+QUALIFY T1 constraint C1
+QUALIFY T1 context CX1
+QUALIFY T1 input U1
+QUALIFY T1 kind task
+QUALIFY T1_1 available_relation R0
+QUALIFY T1_1 available_relation R1
+QUALIFY T1_1 available_relation R2
+QUALIFY T1_1 constraint C1_1
+QUALIFY T1_1 context CX1
+QUALIFY T1_1 input U1_1
+QUALIFY T1_1 kind task
+QUALIFY T1_2 available_relation R0
+QUALIFY T1_2 available_relation R1
+QUALIFY T1_2 available_relation R2
+QUALIFY T1_2 available_relation RVup
+QUALIFY T1_2 constraint C1_2
+QUALIFY T1_2 context CX1C
+QUALIFY T1_2 input U1_2
+QUALIFY T1_2 kind task
+QUALIFY T1_3 available_relation R0
+QUALIFY T1_3 available_relation R1
+QUALIFY T1_3 available_relation R2
+QUALIFY T1_3 available_relation RVdown
+QUALIFY T1_3 available_relation RVup
+QUALIFY T1_3 constraint C1_3
+QUALIFY T1_3 context CX1C
+QUALIFY T1_3 input U1_3
+QUALIFY T1_3 kind task
+QUALIFY T1_4 context CX14
+QUALIFY T1_4 input U14A
+QUALIFY T1_4 input U14B
+QUALIFY T1_4 input U14C
+QUALIFY T1_4 kind task
+QUALIFY T2 context CX2
+QUALIFY T2 input U2
+QUALIFY T2 input U3
+QUALIFY T2 input U4
+QUALIFY T2 kind task
+QUALIFY T3 constraint C3A
+QUALIFY T3 constraint C3V
+QUALIFY T3 context CX3
+QUALIFY T3 input U5
+QUALIFY T3 input U6
+QUALIFY T3 input U7
+QUALIFY T3 kind task
+QUALIFY TR1 kind task_trace
+QUALIFY TR2 kind task_trace
+QUALIFY TR3 kind task_trace
+QUALIFY TR4 kind task_trace
+QUALIFY TR5 kind task_trace
+QUALIFY TR6 kind task_trace
+QUALIFY TR7 kind task_trace
+QUALIFY U1 kind stream
+QUALIFY U1 type Stream(tau_V)
+QUALIFY U14A kind stream
+QUALIFY U14A type Stream(Pair(tau_A,tau_B))
+QUALIFY U14B kind stream
+QUALIFY U14B type Stream(Pair(tau_A,tau_B))
+QUALIFY U14C kind stream
+QUALIFY U14C type Stream(Pair(tau_A,tau_B))
+QUALIFY U1_1 kind stream
+QUALIFY U1_1 type Stream(tau_V)
+QUALIFY U1_2 kind stream
+QUALIFY U1_2 type Stream(tau_V)
+QUALIFY U1_3 kind stream
+QUALIFY U1_3 type Stream(tau_V)
+QUALIFY U2 kind stream
+QUALIFY U2 type Stream(Pair(tau_A,tau_B))
+QUALIFY U3 kind stream
+QUALIFY U3 type Stream(Pair(tau_A,tau_B))
+QUALIFY U4 kind stream
+QUALIFY U4 type Stream(Pair(tau_A,tau_B))
+QUALIFY U5 kind stream
+QUALIFY U5 type Stream(Pair(tau_A,tau_V))
+QUALIFY U6 kind stream
+QUALIFY U6 type Stream(Pair(tau_A,tau_V))
+QUALIFY U7 kind stream
+QUALIFY U7 type Stream(Pair(tau_A,tau_V))
+QUALIFY V0 type tau_V
+QUALIFY V1 type tau_V
+QUALIFY V2 type tau_V
+QUALIFY V3 type tau_V
+QUALIFY V4 type tau_V
+QUALIFY V5 type tau_V
+QUALIFY V6 type tau_V
+QUALIFY V7 type tau_V
+RTYPE R0 tau_V tau_V
+RTYPE R1 tau_V tau_V
+RTYPE R2 tau_V tau_V
+RTYPE RA1 tau_A tau_A
+RTYPE RVdown tau_V tau_V
+RTYPE RVup tau_V tau_V
+INVERSE R1 R2
+EDGE A1 RA1 A2 1
+EDGE A2 RA1 A3 1
+EDGE A3 RA1 A4 1
+EDGE A4 RA1 A5 1
+EDGE A5 RA1 A6 1
+EDGE A6 RA1 A7 1
+EDGE V0 R0 V0 1
+EDGE V0 R1 V1 1
+EDGE V1 R0 V1 1
+EDGE V1 R1 V2 1
+EDGE V1 R2 V0 1
+EDGE V1 RVdown V7 1
+EDGE V1 RVup V2 1
+EDGE V2 R0 V2 1
+EDGE V2 R1 V3 1
+EDGE V2 R2 V1 1
+EDGE V2 RVdown V1 1
+EDGE V2 RVup V3 1
+EDGE V3 R0 V3 1
+EDGE V3 R1 V4 1
+EDGE V3 R2 V2 1
+EDGE V3 RVdown V2 1
+EDGE V3 RVup V4 1
+EDGE V4 R0 V4 1
+EDGE V4 R1 V5 1
+EDGE V4 R2 V3 1
+EDGE V4 RVdown V3 1
+EDGE V4 RVup V5 1
+EDGE V5 R0 V5 1
+EDGE V5 R2 V4 1
+EDGE V5 RVdown V4 1
+EDGE V5 RVup V6 1
+EDGE V6 RVdown V5 1
+EDGE V6 RVup V7 1
+EDGE V7 RVdown V6 1
+EDGE V7 RVup V1 1
+PAIR A1B1 A1 B1
+PAIR A1B2 A1 B2
+PAIR A1B3 A1 B3
+PAIR A1B4 A1 B4
+PAIR A1V1 A1 V1
+PAIR A1V2 A1 V2
+PAIR A1V3 A1 V3
+PAIR A1V4 A1 V4
+PAIR A1V5 A1 V5
+PAIR A1V6 A1 V6
+PAIR A1V7 A1 V7
+PAIR A2B1 A2 B1
+PAIR A2B2 A2 B2
+PAIR A2B3 A2 B3
+PAIR A2B4 A2 B4
+PAIR A2V1 A2 V1
+PAIR A2V2 A2 V2
+PAIR A2V3 A2 V3
+PAIR A2V4 A2 V4
+PAIR A2V5 A2 V5
+PAIR A2V6 A2 V6
+PAIR A2V7 A2 V7
+PAIR A3B1 A3 B1
+PAIR A3B2 A3 B2
+PAIR A3B3 A3 B3
+PAIR A3B4 A3 B4
+PAIR A3V1 A3 V1
+PAIR A3V2 A3 V2
+PAIR A3V3 A3 V3
+PAIR A3V4 A3 V4
+PAIR A3V5 A3 V5
+PAIR A3V6 A3 V6
+PAIR A3V7 A3 V7
+PAIR A4B1 A4 B1
+PAIR A4B2 A4 B2
+PAIR A4B3 A4 B3
+PAIR A4B4 A4 B4
+PAIR A4V1 A4 V1
+PAIR A4V2 A4 V2
+PAIR A4V3 A4 V3
+PAIR A4V4 A4 V4
+PAIR A4V5 A4 V5
+PAIR A4V6 A4 V6
+PAIR A4V7 A4 V7
+PAIR A5V1 A5 V1
+PAIR A5V2 A5 V2
+PAIR A5V3 A5 V3
+PAIR A5V4 A5 V4
+PAIR A5V5 A5 V5
+PAIR A5V6 A5 V6
+PAIR A5V7 A5 V7
+PAIR A6V1 A6 V1
+PAIR A6V2 A6 V2
+PAIR A6V3 A6 V3
+PAIR A6V4 A6 V4
+PAIR A6V5 A6 V5
+PAIR A6V6 A6 V6
+PAIR A6V7 A6 V7
+PAIR A7V1 A7 V1
+PAIR A7V2 A7 V2
+PAIR A7V3 A7 V3
+PAIR A7V4 A7 V4
+PAIR A7V5 A7 V5
+PAIR A7V6 A7 V6
+PAIR A7V7 A7 V7
+POSITION_NEXT I0 I1
+POSITION_NEXT I1 I2
+POSITION_NEXT I2 I3
+AT U1 I0 V1
+AT U1 I1 V2
+AT U1 I2 V3
+AT U14A I0 A1B1
+AT U14A I1 A2B2
+AT U14A I2 A3B3
+AT U14B I0 A3B2
+AT U14B I1 A1B3
+AT U14B I2 A2B1
+AT U14C I0 A2B3
+AT U14C I1 A3B1
+AT U1_1 I0 V4
+AT U1_1 I1 V3
+AT U1_1 I2 V2
+AT U1_2 I0 V6
+AT U1_2 I1 V7
+AT U1_2 I2 V1
+AT U1_3 I0 V2
+AT U1_3 I1 V1
+AT U1_3 I2 V7
+AT U2 I0 A1B1
+AT U2 I1 A3B4
+AT U2 I2 A2B2
+AT U2 I3 A4B3
+AT U3 I0 A2B3
+AT U3 I1 A4B1
+AT U3 I2 A1B4
+AT U3 I3 A3B2
+AT U4 I0 A3B2
+AT U4 I1 A1B1
+AT U4 I2 A4B3
+AT U5 I0 A1V3
+AT U5 I1 A2V2
+AT U5 I2 A3V1
+AT U6 I0 A2V1
+AT U6 I1 A3V7
+AT U6 I2 A4V6
+AT U7 I0 A3V2
+AT U7 I1 A4V1
+UNKNOWN_AT T1 X1 U1 I3 tau_V
+UNKNOWN_AT T1_1 X1_1 U1_1 I3 tau_V
+UNKNOWN_AT T1_2 X1_2 U1_2 I3 tau_V
+UNKNOWN_AT T1_3 X1_3 U1_3 I3 tau_V
+UNKNOWN_AT T1_4 X1_4 U14C I2 Pair(tau_A,tau_B)
+UNKNOWN_AT T2 X2 U4 I3 Pair(tau_A,tau_B)
+UNKNOWN_AT T3 X3 U7 I2 Pair(tau_A,tau_V)
+CONSTRAINT COMPONENT_RELATION C3A U7 1 RA1
+CONSTRAINT COMPONENT_RELATION C3V U7 2 RVdown
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1 U1
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_1 U1_1
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_2 U1_2
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_3 U1_3
+ASSIGN A1_1 X1 V3
+ASSIGN A1_2 X1 V4
+ASSIGN A1_3 X1 V2
+ASSIGN A2_1 X1_1 V2
+ASSIGN A2_2 X1_1 V3
+ASSIGN A2_3 X1_1 V1
+ASSIGN A3_1 X1_2 V1
+ASSIGN A3_2 X1_2 V2
+ASSIGN A3_3 X1_2 V0
+ASSIGN A3_4 X1_2 V2
+ASSIGN A4_1 X1_3 V6
+ASSIGN A4_2 X1_3 V1
+ASSIGN A5_1 X1_4 A1B2
+ASSIGN A6_1 X2 A2B4
+ASSIGN A7_1 X3 A5V7
+PROCEDURE_APPLICATION PA1_1 F0 T1
+PROCEDURE_APPLICATION PA1_2 F0 T1
+PROCEDURE_APPLICATION PA1_3 F0 T1
+PROCEDURE_APPLICATION PA2_1 F0 T1_1
+PROCEDURE_APPLICATION PA2_2 F0 T1_1
+PROCEDURE_APPLICATION PA2_3 F0 T1_1
+PROCEDURE_APPLICATION PA3_1 F0 T1_2
+PROCEDURE_APPLICATION PA3_2 F0 T1_2
+PROCEDURE_APPLICATION PA3_3 F0 T1_2
+PROCEDURE_APPLICATION PA3_4 F0 T1_2
+PROCEDURE_APPLICATION PA4_1 F0 T1_3
+PROCEDURE_APPLICATION PA4_2 F0 T1_3
+PROCEDURE_APPLICATION PA4_empty_1 F0 T1_3
+PROCEDURE_APPLICATION PA4_empty_2 F0 T1_3
+PROCEDURE_APPLICATION PA4_empty_3 F0 T1_3
+PROCEDURE_APPLICATION PA5_1 F3 T1_4
+PROCEDURE_APPLICATION PA6_1 F3 T2
+PROCEDURE_APPLICATION PA7_1 F4 T3
+PROCEDURE_ARGUMENT PA1_1 relation R0
+PROCEDURE_ARGUMENT PA1_1 stream U1
+PROCEDURE_ARGUMENT PA1_2 relation R1
+PROCEDURE_ARGUMENT PA1_2 stream U1
+PROCEDURE_ARGUMENT PA1_3 relation R2
+PROCEDURE_ARGUMENT PA1_3 stream U1
+PROCEDURE_ARGUMENT PA2_1 relation R0
+PROCEDURE_ARGUMENT PA2_1 stream U1_1
+PROCEDURE_ARGUMENT PA2_2 relation R1
+PROCEDURE_ARGUMENT PA2_2 stream U1_1
+PROCEDURE_ARGUMENT PA2_3 relation R2
+PROCEDURE_ARGUMENT PA2_3 stream U1_1
+PROCEDURE_ARGUMENT PA3_1 relation R0
+PROCEDURE_ARGUMENT PA3_1 stream U1_2
+PROCEDURE_ARGUMENT PA3_2 relation R1
+PROCEDURE_ARGUMENT PA3_2 stream U1_2
+PROCEDURE_ARGUMENT PA3_3 relation R2
+PROCEDURE_ARGUMENT PA3_3 stream U1_2
+PROCEDURE_ARGUMENT PA3_4 relation RVup
+PROCEDURE_ARGUMENT PA3_4 stream U1_2
+PROCEDURE_ARGUMENT PA4_1 relation RVdown
+PROCEDURE_ARGUMENT PA4_1 stream U1_3
+PROCEDURE_ARGUMENT PA4_2 relation RVup
+PROCEDURE_ARGUMENT PA4_2 stream U1_3
+PROCEDURE_ARGUMENT PA4_empty_1 relation R0
+PROCEDURE_ARGUMENT PA4_empty_1 stream U1_3
+PROCEDURE_ARGUMENT PA4_empty_2 relation R1
+PROCEDURE_ARGUMENT PA4_empty_2 stream U1_3
+PROCEDURE_ARGUMENT PA4_empty_3 relation R2
+PROCEDURE_ARGUMENT PA4_empty_3 stream U1_3
+PROCEDURE_ARGUMENT PA5_1 stream U14C
+PROCEDURE_ARGUMENT PA6_1 stream U4
+PROCEDURE_ARGUMENT PA7_1 relation_1 RA1
+PROCEDURE_ARGUMENT PA7_1 relation_2 RVdown
+PROCEDURE_ARGUMENT PA7_1 stream U7
+PROCEDURE_RESULT PA1_1 value V3
+PROCEDURE_RESULT PA1_2 value V4
+PROCEDURE_RESULT PA1_3 value V2
+PROCEDURE_RESULT PA2_1 value V2
+PROCEDURE_RESULT PA2_2 value V3
+PROCEDURE_RESULT PA2_3 value V1
+PROCEDURE_RESULT PA3_1 value V1
+PROCEDURE_RESULT PA3_2 value V2
+PROCEDURE_RESULT PA3_3 value V0
+PROCEDURE_RESULT PA3_4 value V2
+PROCEDURE_RESULT PA4_1 value V6
+PROCEDURE_RESULT PA4_2 value V1
+PROCEDURE_RESULT PA5_1 value A1B2
+PROCEDURE_RESULT PA6_1 value A2B4
+PROCEDURE_RESULT PA7_1 value A5V7
+EVALUATION EV1_1 T1 P1_1
+EVALUATION EV1_2 T1 P1_2
+EVALUATION EV1_3 T1 P1_3
+EVALUATION EV2_1 T1_1 P2_1
+EVALUATION EV2_2 T1_1 P2_2
+EVALUATION EV2_3 T1_1 P2_3
+EVALUATION EV3_1 T1_2 P3_1
+EVALUATION EV3_2 T1_2 P3_2
+EVALUATION EV3_3 T1_2 P3_3
+EVALUATION EV3_4 T1_2 P3_4
+EVALUATION EV4_1 T1_3 P4_1
+EVALUATION EV4_2 T1_3 P4_2
+EVALUATION EV5_1 T1_4 P5_1
+EVALUATION EV6_1 T2 P6_1
+EVALUATION EV7_1 T3 P7_1
+ASSESS EV1_1 proposal_complete pass
+ASSESS EV1_1 type_compatible pass
+ASSESS EV1_1 satisfies_givens pass
+ASSESS EV1_1 satisfies_constraints fail
+ASSESS EV1_1 derivation_supported pass
+ASSESS EV1_2 proposal_complete pass
+ASSESS EV1_2 type_compatible pass
+ASSESS EV1_2 satisfies_givens pass
+ASSESS EV1_2 satisfies_constraints pass
+ASSESS EV1_2 derivation_supported pass
+ASSESS EV1_3 proposal_complete pass
+ASSESS EV1_3 type_compatible pass
+ASSESS EV1_3 satisfies_givens pass
+ASSESS EV1_3 satisfies_constraints fail
+ASSESS EV1_3 derivation_supported pass
+ASSESS EV2_1 proposal_complete pass
+ASSESS EV2_1 type_compatible pass
+ASSESS EV2_1 satisfies_givens pass
+ASSESS EV2_1 satisfies_constraints fail
+ASSESS EV2_1 derivation_supported pass
+ASSESS EV2_2 proposal_complete pass
+ASSESS EV2_2 type_compatible pass
+ASSESS EV2_2 satisfies_givens pass
+ASSESS EV2_2 satisfies_constraints fail
+ASSESS EV2_2 derivation_supported pass
+ASSESS EV2_3 proposal_complete pass
+ASSESS EV2_3 type_compatible pass
+ASSESS EV2_3 satisfies_givens pass
+ASSESS EV2_3 satisfies_constraints pass
+ASSESS EV2_3 derivation_supported pass
+ASSESS EV3_1 proposal_complete pass
+ASSESS EV3_1 type_compatible pass
+ASSESS EV3_1 satisfies_givens pass
+ASSESS EV3_1 satisfies_constraints fail
+ASSESS EV3_1 derivation_supported pass
+ASSESS EV3_2 proposal_complete pass
+ASSESS EV3_2 type_compatible pass
+ASSESS EV3_2 satisfies_givens pass
+ASSESS EV3_2 satisfies_constraints fail
+ASSESS EV3_2 derivation_supported pass
+ASSESS EV3_3 proposal_complete pass
+ASSESS EV3_3 type_compatible pass
+ASSESS EV3_3 satisfies_givens pass
+ASSESS EV3_3 satisfies_constraints fail
+ASSESS EV3_3 derivation_supported pass
+ASSESS EV3_4 proposal_complete pass
+ASSESS EV3_4 type_compatible pass
+ASSESS EV3_4 satisfies_givens pass
+ASSESS EV3_4 satisfies_constraints pass
+ASSESS EV3_4 derivation_supported pass
+ASSESS EV4_1 proposal_complete pass
+ASSESS EV4_1 type_compatible pass
+ASSESS EV4_1 satisfies_givens pass
+ASSESS EV4_1 satisfies_constraints pass
+ASSESS EV4_1 derivation_supported pass
+ASSESS EV4_2 proposal_complete pass
+ASSESS EV4_2 type_compatible pass
+ASSESS EV4_2 satisfies_givens pass
+ASSESS EV4_2 satisfies_constraints fail
+ASSESS EV4_2 derivation_supported pass
+ASSESS EV5_1 proposal_complete pass
+ASSESS EV5_1 type_compatible pass
+ASSESS EV5_1 satisfies_givens pass
+ASSESS EV5_1 satisfies_constraints pass
+ASSESS EV5_1 derivation_supported pass
+ASSESS EV6_1 proposal_complete pass
+ASSESS EV6_1 type_compatible pass
+ASSESS EV6_1 satisfies_givens pass
+ASSESS EV6_1 satisfies_constraints pass
+ASSESS EV6_1 derivation_supported pass
+ASSESS EV7_1 proposal_complete pass
+ASSESS EV7_1 type_compatible pass
+ASSESS EV7_1 satisfies_givens pass
+ASSESS EV7_1 satisfies_constraints pass
+ASSESS EV7_1 derivation_supported pass
+DERIVED_FROM H10 TR5
+DERIVED_FROM H11 P6_1
+DERIVED_FROM H12 P7_1
+DERIVED_FROM H1rule P1_2
+DERIVED_FROM H2rule P2_3
+DERIVED_FROM H3rule P3_4
+DERIVED_FROM H4rule P4_1
+DERIVED_FROM H5 P1_2
+DERIVED_FROM H6 P2_3
+DERIVED_FROM H6rule P6_1
+DERIVED_FROM H7 P3_4
+DERIVED_FROM H7rule P7_1
+DERIVED_FROM H8 P4_1
+DERIVED_FROM H9 TR5
+DP_RUN RUN1 T1 KSREF_e1d06a835ddab7a6227b44e9094b8783a3659365cc80b3428c816e80243526a6 TR1
+DP_RUN RUN2 T1_1 KSREF_14d6a5df7abdc445188a30b8ce0e79c963d79c86533cfbac50a89b76dad39d64 TR2
+DP_RUN RUN3 T1_2 KSREF_f6d6c0875ef2001ee05447fefaf251ef781833da051ae5442e4c2b502560d2bc TR3
+DP_RUN RUN4 T1_3 KSREF_a4253121bcc0f5ad99c8fc1e9f3ba5d8a7665b7587c1b3b09d9124e923ff6cb4 TR4
+DP_RUN RUN5 T1_4 KSREF_152b40dcc20872f548ec84d06fbc966ed6788bee29cae608177084d6f5ce209c TR5
+DP_RUN RUN6 T2 KSREF_a1df9deed80ecb724a89dc16b6689f83622ac299847f5050f3f9ed11ca3eab28 TR6
+DP_RUN RUN7 T3 KSREF_083a3859ab04252d4e3152a237f80205b92e4deb714e21b73578af66bb0f6354 TR7
+TRACE_FAILED_ON TR1 P1_1
+TRACE_FAILED_ON TR1 P1_3
+TRACE_FAILED_ON TR2 P2_1
+TRACE_FAILED_ON TR2 P2_2
+TRACE_FAILED_ON TR3 P3_1
+TRACE_FAILED_ON TR3 P3_2
+TRACE_FAILED_ON TR3 P3_3
+TRACE_FAILED_ON TR4 P4_2
+TRACE_OUTCOME TR1 OUT1
+TRACE_OUTCOME TR2 OUT2
+TRACE_OUTCOME TR3 OUT3
+TRACE_OUTCOME TR4 OUT4
+TRACE_OUTCOME TR5 OUT5
+TRACE_OUTCOME TR6 OUT6
+TRACE_OUTCOME TR7 OUT7
+TRACE_PART A1_1 TR1
+TRACE_PART A1_2 TR1
+TRACE_PART A1_3 TR1
+TRACE_PART A2_1 TR2
+TRACE_PART A2_2 TR2
+TRACE_PART A2_3 TR2
+TRACE_PART A3_1 TR3
+TRACE_PART A3_2 TR3
+TRACE_PART A3_3 TR3
+TRACE_PART A3_4 TR3
+TRACE_PART A4_1 TR4
+TRACE_PART A4_2 TR4
+TRACE_PART A5_1 TR5
+TRACE_PART A6_1 TR6
+TRACE_PART A7_1 TR7
+TRACE_PART EV1_1 TR1
+TRACE_PART EV1_2 TR1
+TRACE_PART EV1_3 TR1
+TRACE_PART EV2_1 TR2
+TRACE_PART EV2_2 TR2
+TRACE_PART EV2_3 TR2
+TRACE_PART EV3_1 TR3
+TRACE_PART EV3_2 TR3
+TRACE_PART EV3_3 TR3
+TRACE_PART EV3_4 TR3
+TRACE_PART EV4_1 TR4
+TRACE_PART EV4_2 TR4
+TRACE_PART EV5_1 TR5
+TRACE_PART EV6_1 TR6
+TRACE_PART EV7_1 TR7
+TRACE_PART P1_1 TR1
+TRACE_PART P1_2 TR1
+TRACE_PART P1_3 TR1
+TRACE_PART P2_1 TR2
+TRACE_PART P2_2 TR2
+TRACE_PART P2_3 TR2
+TRACE_PART P3_1 TR3
+TRACE_PART P3_2 TR3
+TRACE_PART P3_3 TR3
+TRACE_PART P3_4 TR3
+TRACE_PART P4_1 TR4
+TRACE_PART P4_2 TR4
+TRACE_PART P5_1 TR5
+TRACE_PART P6_1 TR6
+TRACE_PART P7_1 TR7
+TRACE_PART PA1_1 TR1
+TRACE_PART PA1_2 TR1
+TRACE_PART PA1_3 TR1
+TRACE_PART PA2_1 TR2
+TRACE_PART PA2_2 TR2
+TRACE_PART PA2_3 TR2
+TRACE_PART PA3_1 TR3
+TRACE_PART PA3_2 TR3
+TRACE_PART PA3_3 TR3
+TRACE_PART PA3_4 TR3
+TRACE_PART PA4_1 TR4
+TRACE_PART PA4_2 TR4
+TRACE_PART PA4_empty_1 TR4
+TRACE_PART PA4_empty_2 TR4
+TRACE_PART PA4_empty_3 TR4
+TRACE_PART PA5_1 TR5
+TRACE_PART PA6_1 TR6
+TRACE_PART PA7_1 TR7
+TRACE_SELECTED TR1 P1_2
+TRACE_SELECTED TR2 P2_3
+TRACE_SELECTED TR3 P3_4
+TRACE_SELECTED TR4 P4_1
+TRACE_SELECTED TR5 P5_1
+TRACE_SELECTED TR6 P6_1
+TRACE_SELECTED TR7 P7_1
+TRACE_TASK TR1 T1
+TRACE_TASK TR2 T1_1
+TRACE_TASK TR3 T1_2
+TRACE_TASK TR4 T1_3
+TRACE_TASK TR5 T1_4
+TRACE_TASK TR6 T2
+TRACE_TASK TR7 T3
+TRACE_USED TR1 F0
+TRACE_USED TR1 R0
+TRACE_USED TR1 R1
+TRACE_USED TR1 R2
+TRACE_USED TR2 F0
+TRACE_USED TR2 R0
+TRACE_USED TR2 R1
+TRACE_USED TR2 R2
+TRACE_USED TR3 F0
+TRACE_USED TR3 R0
+TRACE_USED TR3 R1
+TRACE_USED TR3 R2
+TRACE_USED TR3 RVup
+TRACE_USED TR4 F0
+TRACE_USED TR4 R0
+TRACE_USED TR4 R1
+TRACE_USED TR4 R2
+TRACE_USED TR4 RVdown
+TRACE_USED TR4 RVup
+TRACE_USED TR5 F3
+TRACE_USED TR5 PROJECT
+TRACE_USED TR6 F3
+TRACE_USED TR6 H10
+TRACE_USED TR6 H9
+TRACE_USED TR7 F4
+TRACE_USED TR7 H11
+TRACE_USED TR7 RA1
+TRACE_USED TR7 RVdown

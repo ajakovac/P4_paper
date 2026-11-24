@@ -1,0 +1,91 @@
+TYPE tau_A
+TYPE tau_B
+
+ENTITY A1
+QUALIFY A1 type tau_A
+
+ENTITY A2
+QUALIFY A2 type tau_A
+
+ENTITY A3
+QUALIFY A3 type tau_A
+
+ENTITY B1
+QUALIFY B1 type tau_B
+
+ENTITY B2
+QUALIFY B2 type tau_B
+
+ENTITY B3
+QUALIFY B3 type tau_B
+
+PAIR A1B1 A1 B1
+QUALIFY A1B1 type Pair(tau_A,tau_B)
+
+PAIR A1B2 A1 B2
+QUALIFY A1B2 type Pair(tau_A,tau_B)
+
+PAIR A1B3 A1 B3
+QUALIFY A1B3 type Pair(tau_A,tau_B)
+
+PAIR A2B1 A2 B1
+QUALIFY A2B1 type Pair(tau_A,tau_B)
+
+PAIR A2B2 A2 B2
+QUALIFY A2B2 type Pair(tau_A,tau_B)
+
+PAIR A2B3 A2 B3
+QUALIFY A2B3 type Pair(tau_A,tau_B)
+
+PAIR A3B1 A3 B1
+QUALIFY A3B1 type Pair(tau_A,tau_B)
+
+PAIR A3B2 A3 B2
+QUALIFY A3B2 type Pair(tau_A,tau_B)
+
+PAIR A3B3 A3 B3
+QUALIFY A3B3 type Pair(tau_A,tau_B)
+
+ENTITY CX14
+QUALIFY CX14 kind context
+QUALIFY CX14 type tau_CX
+QUALIFY CX14 base_type Pair(tau_A,tau_B)
+QUALIFY CX14 distinguishes_type Pair(tau_A,tau_B)
+QUALIFY CX14 member A1B1
+QUALIFY CX14 member A1B2
+QUALIFY CX14 member A1B3
+QUALIFY CX14 member A2B1
+QUALIFY CX14 member A2B2
+QUALIFY CX14 member A2B3
+QUALIFY CX14 member A3B1
+QUALIFY CX14 member A3B2
+QUALIFY CX14 member A3B3
+
+ENTITY U14A
+QUALIFY U14A kind stream
+QUALIFY U14A type Stream(Pair(tau_A,tau_B))
+AT U14A I0 A1B1
+AT U14A I1 A2B2
+AT U14A I2 A3B3
+
+ENTITY U14B
+QUALIFY U14B kind stream
+QUALIFY U14B type Stream(Pair(tau_A,tau_B))
+AT U14B I0 A3B2
+AT U14B I1 A1B3
+AT U14B I2 A2B1
+
+ENTITY U14C
+QUALIFY U14C kind stream
+QUALIFY U14C type Stream(Pair(tau_A,tau_B))
+AT U14C I0 A2B3
+AT U14C I1 A3B1
+
+ENTITY T1_4
+QUALIFY T1_4 kind task
+QUALIFY T1_4 context CX14
+QUALIFY T1_4 input U14A
+QUALIFY T1_4 input U14B
+QUALIFY T1_4 input U14C
+
+UNKNOWN_AT T1_4 X1_4 U14C I2 Pair(tau_A,tau_B)

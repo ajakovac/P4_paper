@@ -1,0 +1,19 @@
+ENTITY U1_1
+QUALIFY U1_1 kind stream
+QUALIFY U1_1 type Stream(tau_V)
+AT U1_1 I0 V4
+AT U1_1 I1 V3
+AT U1_1 I2 V2
+
+ENTITY T1_1
+QUALIFY T1_1 kind task
+QUALIFY T1_1 context CX1
+QUALIFY T1_1 input U1_1
+QUALIFY T1_1 available_relation R0
+QUALIFY T1_1 available_relation R1
+QUALIFY T1_1 available_relation R2
+
+UNKNOWN_AT T1_1 X1_1 U1_1 I3 tau_V
+
+CONSTRAINT SAME_RELATION_SUCCESSIVE C1_1 U1_1
+QUALIFY T1_1 constraint C1_1

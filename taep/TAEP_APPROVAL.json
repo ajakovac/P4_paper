@@ -1,0 +1,7 @@
+{
+  "status": "APPROVED",
+  "approved_sha256": "d7525a94fcfcb6f4fbf983ff3f901e60dc1ce6ab0c9af25ca53683d1214ca0ce",
+  "name": "TASK_AGNOSTIC_EXECUTION_PROMPT_V01",
+  "approval_scope": "Task-agnostic execution prompt approval; applicable with an explicitly frozen formal P0/task/KS input set. TAEP bytes unchanged.",
+  "note": "Approved TAEP bytes are unchanged. P0 v14 is a separately approved formal-specification validity/evaluator change; any TAEP byte change still invalidates this approval automatically."
+}

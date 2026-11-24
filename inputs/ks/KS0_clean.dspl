@@ -1,0 +1,72 @@
+TYPE tau_V
+TYPE tau_CX
+TYPE tau_R
+
+ENTITY V0
+QUALIFY V0 type tau_V
+
+ENTITY V1
+QUALIFY V1 type tau_V
+
+ENTITY V2
+QUALIFY V2 type tau_V
+
+ENTITY V3
+QUALIFY V3 type tau_V
+
+ENTITY V4
+QUALIFY V4 type tau_V
+
+ENTITY V5
+QUALIFY V5 type tau_V
+
+ENTITY CX1
+QUALIFY CX1 kind context
+QUALIFY CX1 type tau_CX
+QUALIFY CX1 base_type tau_V
+QUALIFY CX1 distinguishes_type tau_V
+QUALIFY CX1 member V0
+QUALIFY CX1 member V1
+QUALIFY CX1 member V2
+QUALIFY CX1 member V3
+QUALIFY CX1 member V4
+QUALIFY CX1 member V5
+
+ENTITY R0
+QUALIFY R0 kind relation
+QUALIFY R0 type tau_R
+RTYPE R0 tau_V tau_V
+QUALIFY R0 functional true
+QUALIFY R0 reflexive true
+
+ENTITY R1
+QUALIFY R1 kind relation
+QUALIFY R1 type tau_R
+RTYPE R1 tau_V tau_V
+QUALIFY R1 functional true
+INVERSE R1 R2
+
+ENTITY R2
+QUALIFY R2 kind relation
+QUALIFY R2 type tau_R
+RTYPE R2 tau_V tau_V
+QUALIFY R2 functional true
+
+EDGE V0 R0 V0 1
+EDGE V1 R0 V1 1
+EDGE V2 R0 V2 1
+EDGE V3 R0 V3 1
+EDGE V4 R0 V4 1
+EDGE V5 R0 V5 1
+
+EDGE V0 R1 V1 1
+EDGE V1 R1 V2 1
+EDGE V2 R1 V3 1
+EDGE V3 R1 V4 1
+EDGE V4 R1 V5 1
+
+EDGE V1 R2 V0 1
+EDGE V2 R2 V1 1
+EDGE V3 R2 V2 1
+EDGE V4 R2 V3 1
+EDGE V5 R2 V4 1

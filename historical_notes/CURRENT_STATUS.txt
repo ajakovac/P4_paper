@@ -1,0 +1,15 @@
+LLM_PROPOSER_ENVELOPE_v08_MODEL_SELECTION_P0v14_E3v01
+STATUS: E1 BASELINE PRESERVED / E2 GROUP A PRESERVED / E3 POPULATED
+TAEP: unchanged, approved TASK_AGNOSTIC_EXECUTION_PROMPT_V01
+ACTIVE BASE P0: frozen/P0_consolidated_T1_T6_v14.tex
+E3 P0 EXTENSION: frozen/P0_E3_EXTENSION_v01.tex; active only for E3_COMPOSITION tasks
+E1: unchanged 11-episode baseline curriculum
+E2: E2T1-E2T7 Group-A controls; bounded construction disabled; deterministic host replay; no persistent update
+E3: E3T1, E3T2, E3T3_pre, E3T3_build, E3T3_post, E3T4
+E3 KS: explicit Rseq, Rord, ADD_NAT, MUL_NAT; canonical snapshots E3KS0-E3KS4
+E3 DEVELOPMENT: H_L -> H_W -> T3 pre/build/post H_C -> H_I construction at E3T4
+OUTPUT PROTOCOL: unchanged LML_PROPOSER_TRANSITION_V02
+SCIENTIFIC CORE: E1/TAEP/base P0 unchanged from v06r1
+SCREEN/READER OUTPUT: compact three-way wording for E2/E3; detailed evidence retained in JSON/trace
+WINDOW CONTROL: all BAT launchers pause after Python returns; console remains open until key press
+READER OUTPUT: per-run READER_DIAGNOSIS.txt; experiment E2_READER_SUMMARY.txt / E3_READER_SUMMARY.txt

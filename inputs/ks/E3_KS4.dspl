@@ -1,0 +1,76 @@
+TYPE tau_L
+TYPE tau_N
+TYPE tau_LN
+TYPE tau_R
+TYPE tau_H
+ENTITY A
+QUALIFY A type tau_L
+ENTITY B
+QUALIFY B type tau_L
+ENTITY C
+QUALIFY C type tau_L
+ENTITY D
+QUALIFY D type tau_L
+ENTITY E
+QUALIFY E type tau_L
+ENTITY F
+QUALIFY F type tau_L
+NAT_RANGE 0 30
+ENTITY Rseq
+QUALIFY Rseq kind relation
+QUALIFY Rseq type tau_R
+RTYPE Rseq tau_L tau_L
+EDGE A Rseq B 1
+EDGE B Rseq C 1
+EDGE C Rseq D 1
+EDGE D Rseq E 1
+EDGE E Rseq F 1
+ENTITY Rord
+QUALIFY Rord kind relation
+QUALIFY Rord type tau_R
+RTYPE Rord tau_L tau_N
+EDGE A Rord 1 1
+EDGE B Rord 2 1
+EDGE C Rord 3 1
+EDGE D Rord 4 1
+EDGE E Rord 5 1
+EDGE F Rord 6 1
+PRIMITIVE ADD_NAT
+PRIMITIVE MUL_NAT
+PROCEDURE H_L
+QUALIFY H_L kind procedure
+QUALIFY H_L status supported
+QUALIFY H_L proposal_source true
+QUALIFY H_L procedure_family e3_later_successor_letter
+QUALIFY H_L input_signature (tau_L,tau_L)
+QUALIFY H_L output_type tau_L
+QUALIFY H_L uses_relation Rseq
+PROCEDURE H_W
+QUALIFY H_W kind procedure
+QUALIFY H_W status supported
+QUALIFY H_W proposal_source true
+QUALIFY H_W procedure_family e3_letter_weight
+QUALIFY H_W input_signature (tau_L,tau_N)
+QUALIFY H_W output_type tau_N
+QUALIFY H_W uses_relation Rord
+QUALIFY H_W uses_procedure MUL_NAT
+PROCEDURE H_C
+QUALIFY H_C kind procedure
+QUALIFY H_C status supported
+QUALIFY H_C proposal_source true
+QUALIFY H_C procedure_family e3_common_argument_composition
+QUALIFY H_C input_signature (tau_L,tau_L,tau_N)
+QUALIFY H_C output_type tau_LN
+QUALIFY H_C uses_procedure H_L
+QUALIFY H_C uses_procedure H_W
+QUALIFY H_C uses_procedure ADD_NAT
+PROCEDURE H_I
+QUALIFY H_I kind procedure
+QUALIFY H_I status supported
+QUALIFY H_I proposal_source true
+QUALIFY H_I procedure_family e3_independent_argument_composition
+QUALIFY H_I input_signature (tau_L,tau_N,tau_L,tau_N)
+QUALIFY H_I output_type tau_LN
+QUALIFY H_I uses_procedure H_L
+QUALIFY H_I uses_procedure H_W
+QUALIFY H_I uses_procedure ADD_NAT

@@ -1,0 +1,122 @@
+{
+  "01": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "02": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "03": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "04": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "05": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "06": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "07": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "08": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "09": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "10": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "11": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "E2T1": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T2": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T3": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T4": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T5": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T6": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E2T7": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E3T1": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "E3T2": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "E3T3_pre": {
+    "construction_allowed": false,
+    "proposal_allowed": false,
+    "insertion_allowed": false
+  },
+  "E3T3_build": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  },
+  "E3T3_post": {
+    "construction_allowed": false,
+    "proposal_allowed": true,
+    "insertion_allowed": false
+  },
+  "E3T4": {
+    "construction_allowed": true,
+    "proposal_allowed": true,
+    "insertion_allowed": true
+  }
+}

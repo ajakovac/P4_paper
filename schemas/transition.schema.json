@@ -1,0 +1,379 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "string",
+      "enum": [
+        "LML_PROPOSER_TRANSITION_V02"
+      ]
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "generation_status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "incomplete",
+        "unresolved"
+      ]
+    },
+    "local_outcome": {
+      "type": "string",
+      "enum": [
+        "proposals",
+        "no_local_solution",
+        "evaluation_unresolved",
+        "search_incomplete"
+      ]
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hypothesis": {
+            "type": "string"
+          },
+          "search_priority": {
+            "type": "integer"
+          },
+          "binding": {
+            "type": "object",
+            "properties": {
+              "unknown": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unknown",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "support_facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "check": {
+                  "type": "string",
+                  "enum": [
+                    "proposal_complete",
+                    "type_compatible",
+                    "satisfies_givens",
+                    "satisfies_constraints",
+                    "derivation_supported"
+                  ]
+                },
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "unresolved"
+                  ]
+                }
+              },
+              "required": [
+                "check",
+                "result"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "hypothesis",
+          "search_priority",
+          "binding",
+          "support_facts",
+          "checks"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "selected": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hypothesis": {
+            "type": "string"
+          },
+          "search_priority": {
+            "type": "integer"
+          },
+          "binding": {
+            "type": "object",
+            "properties": {
+              "unknown": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unknown",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "support_facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "check": {
+                  "type": "string",
+                  "enum": [
+                    "proposal_complete",
+                    "type_compatible",
+                    "satisfies_givens",
+                    "satisfies_constraints",
+                    "derivation_supported"
+                  ]
+                },
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "unresolved"
+                  ]
+                }
+              },
+              "required": [
+                "check",
+                "result"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "hypothesis",
+          "search_priority",
+          "binding",
+          "support_facts",
+          "checks"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "raw_trace_serial": {
+      "type": "object",
+      "properties": {
+        "serial": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "index": {
+                "type": "integer"
+              },
+              "event": {
+                "type": "string",
+                "enum": [
+                  "used",
+                  "applied",
+                  "derived",
+                  "evaluated",
+                  "selected",
+                  "rejected",
+                  "outcome"
+                ]
+              },
+              "arguments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "index",
+              "event",
+              "arguments"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "serial",
+        "task_id",
+        "steps"
+      ],
+      "additionalProperties": false
+    },
+    "knowledge_proposal_bundle": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "index": {
+                "type": "integer"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "rule",
+                  "schema",
+                  "procedure"
+                ]
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "index",
+              "kind",
+              "facts"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "task_id",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "construction_phase": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_entered",
+            "disabled",
+            "no_construction_found",
+            "construction_proposed"
+          ]
+        },
+        "proposal_present": {
+          "type": "boolean"
+        },
+        "knowledge_proposal_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "support_facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependent_solution": {
+          "type": "object",
+          "properties": {
+            "present": {
+              "type": "boolean"
+            },
+            "unknown": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stream": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "present",
+            "unknown",
+            "value",
+            "stream"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "allowed",
+        "status",
+        "proposal_present",
+        "knowledge_proposal_index",
+        "support_facts",
+        "dependent_solution"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "protocol",
+    "task_id",
+    "generation_status",
+    "local_outcome",
+    "candidates",
+    "selected",
+    "raw_trace_serial",
+    "knowledge_proposal_bundle",
+    "construction_phase"
+  ],
+  "additionalProperties": false
+}

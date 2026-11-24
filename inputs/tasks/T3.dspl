@@ -1,0 +1,298 @@
+ENTITY A4
+QUALIFY A4 type tau_A
+
+ENTITY A5
+QUALIFY A5 type tau_A
+
+ENTITY A6
+QUALIFY A6 type tau_A
+
+ENTITY A7
+QUALIFY A7 type tau_A
+
+ENTITY V6
+QUALIFY V6 type tau_V
+
+ENTITY V7
+QUALIFY V7 type tau_V
+
+PAIR A1V1 A1 V1
+QUALIFY A1V1 type Pair(tau_A,tau_V)
+
+PAIR A1V2 A1 V2
+QUALIFY A1V2 type Pair(tau_A,tau_V)
+
+PAIR A1V3 A1 V3
+QUALIFY A1V3 type Pair(tau_A,tau_V)
+
+PAIR A1V4 A1 V4
+QUALIFY A1V4 type Pair(tau_A,tau_V)
+
+PAIR A1V5 A1 V5
+QUALIFY A1V5 type Pair(tau_A,tau_V)
+
+PAIR A1V6 A1 V6
+QUALIFY A1V6 type Pair(tau_A,tau_V)
+
+PAIR A1V7 A1 V7
+QUALIFY A1V7 type Pair(tau_A,tau_V)
+
+PAIR A2V1 A2 V1
+QUALIFY A2V1 type Pair(tau_A,tau_V)
+
+PAIR A2V2 A2 V2
+QUALIFY A2V2 type Pair(tau_A,tau_V)
+
+PAIR A2V3 A2 V3
+QUALIFY A2V3 type Pair(tau_A,tau_V)
+
+PAIR A2V4 A2 V4
+QUALIFY A2V4 type Pair(tau_A,tau_V)
+
+PAIR A2V5 A2 V5
+QUALIFY A2V5 type Pair(tau_A,tau_V)
+
+PAIR A2V6 A2 V6
+QUALIFY A2V6 type Pair(tau_A,tau_V)
+
+PAIR A2V7 A2 V7
+QUALIFY A2V7 type Pair(tau_A,tau_V)
+
+PAIR A3V1 A3 V1
+QUALIFY A3V1 type Pair(tau_A,tau_V)
+
+PAIR A3V2 A3 V2
+QUALIFY A3V2 type Pair(tau_A,tau_V)
+
+PAIR A3V3 A3 V3
+QUALIFY A3V3 type Pair(tau_A,tau_V)
+
+PAIR A3V4 A3 V4
+QUALIFY A3V4 type Pair(tau_A,tau_V)
+
+PAIR A3V5 A3 V5
+QUALIFY A3V5 type Pair(tau_A,tau_V)
+
+PAIR A3V6 A3 V6
+QUALIFY A3V6 type Pair(tau_A,tau_V)
+
+PAIR A3V7 A3 V7
+QUALIFY A3V7 type Pair(tau_A,tau_V)
+
+PAIR A4V1 A4 V1
+QUALIFY A4V1 type Pair(tau_A,tau_V)
+
+PAIR A4V2 A4 V2
+QUALIFY A4V2 type Pair(tau_A,tau_V)
+
+PAIR A4V3 A4 V3
+QUALIFY A4V3 type Pair(tau_A,tau_V)
+
+PAIR A4V4 A4 V4
+QUALIFY A4V4 type Pair(tau_A,tau_V)
+
+PAIR A4V5 A4 V5
+QUALIFY A4V5 type Pair(tau_A,tau_V)
+
+PAIR A4V6 A4 V6
+QUALIFY A4V6 type Pair(tau_A,tau_V)
+
+PAIR A4V7 A4 V7
+QUALIFY A4V7 type Pair(tau_A,tau_V)
+
+PAIR A5V1 A5 V1
+QUALIFY A5V1 type Pair(tau_A,tau_V)
+
+PAIR A5V2 A5 V2
+QUALIFY A5V2 type Pair(tau_A,tau_V)
+
+PAIR A5V3 A5 V3
+QUALIFY A5V3 type Pair(tau_A,tau_V)
+
+PAIR A5V4 A5 V4
+QUALIFY A5V4 type Pair(tau_A,tau_V)
+
+PAIR A5V5 A5 V5
+QUALIFY A5V5 type Pair(tau_A,tau_V)
+
+PAIR A5V6 A5 V6
+QUALIFY A5V6 type Pair(tau_A,tau_V)
+
+PAIR A5V7 A5 V7
+QUALIFY A5V7 type Pair(tau_A,tau_V)
+
+PAIR A6V1 A6 V1
+QUALIFY A6V1 type Pair(tau_A,tau_V)
+
+PAIR A6V2 A6 V2
+QUALIFY A6V2 type Pair(tau_A,tau_V)
+
+PAIR A6V3 A6 V3
+QUALIFY A6V3 type Pair(tau_A,tau_V)
+
+PAIR A6V4 A6 V4
+QUALIFY A6V4 type Pair(tau_A,tau_V)
+
+PAIR A6V5 A6 V5
+QUALIFY A6V5 type Pair(tau_A,tau_V)
+
+PAIR A6V6 A6 V6
+QUALIFY A6V6 type Pair(tau_A,tau_V)
+
+PAIR A6V7 A6 V7
+QUALIFY A6V7 type Pair(tau_A,tau_V)
+
+PAIR A7V1 A7 V1
+QUALIFY A7V1 type Pair(tau_A,tau_V)
+
+PAIR A7V2 A7 V2
+QUALIFY A7V2 type Pair(tau_A,tau_V)
+
+PAIR A7V3 A7 V3
+QUALIFY A7V3 type Pair(tau_A,tau_V)
+
+PAIR A7V4 A7 V4
+QUALIFY A7V4 type Pair(tau_A,tau_V)
+
+PAIR A7V5 A7 V5
+QUALIFY A7V5 type Pair(tau_A,tau_V)
+
+PAIR A7V6 A7 V6
+QUALIFY A7V6 type Pair(tau_A,tau_V)
+
+PAIR A7V7 A7 V7
+QUALIFY A7V7 type Pair(tau_A,tau_V)
+
+ENTITY CX3A
+QUALIFY CX3A kind context
+QUALIFY CX3A type tau_CX
+QUALIFY CX3A base_type tau_A
+QUALIFY CX3A distinguishes_type tau_A
+QUALIFY CX3A member A1
+QUALIFY CX3A member A2
+QUALIFY CX3A member A3
+QUALIFY CX3A member A4
+QUALIFY CX3A member A5
+QUALIFY CX3A member A6
+QUALIFY CX3A member A7
+
+ENTITY CX3V
+QUALIFY CX3V kind context
+QUALIFY CX3V type tau_CX
+QUALIFY CX3V base_type tau_V
+QUALIFY CX3V distinguishes_type tau_V
+QUALIFY CX3V member V1
+QUALIFY CX3V member V2
+QUALIFY CX3V member V3
+QUALIFY CX3V member V4
+QUALIFY CX3V member V5
+QUALIFY CX3V member V6
+QUALIFY CX3V member V7
+
+ENTITY CX3
+QUALIFY CX3 kind context
+QUALIFY CX3 type tau_CX
+QUALIFY CX3 base_type Pair(tau_A,tau_V)
+QUALIFY CX3 distinguishes_type Pair(tau_A,tau_V)
+QUALIFY CX3 member A1V1
+QUALIFY CX3 member A1V2
+QUALIFY CX3 member A1V3
+QUALIFY CX3 member A1V4
+QUALIFY CX3 member A1V5
+QUALIFY CX3 member A1V6
+QUALIFY CX3 member A1V7
+QUALIFY CX3 member A2V1
+QUALIFY CX3 member A2V2
+QUALIFY CX3 member A2V3
+QUALIFY CX3 member A2V4
+QUALIFY CX3 member A2V5
+QUALIFY CX3 member A2V6
+QUALIFY CX3 member A2V7
+QUALIFY CX3 member A3V1
+QUALIFY CX3 member A3V2
+QUALIFY CX3 member A3V3
+QUALIFY CX3 member A3V4
+QUALIFY CX3 member A3V5
+QUALIFY CX3 member A3V6
+QUALIFY CX3 member A3V7
+QUALIFY CX3 member A4V1
+QUALIFY CX3 member A4V2
+QUALIFY CX3 member A4V3
+QUALIFY CX3 member A4V4
+QUALIFY CX3 member A4V5
+QUALIFY CX3 member A4V6
+QUALIFY CX3 member A4V7
+QUALIFY CX3 member A5V1
+QUALIFY CX3 member A5V2
+QUALIFY CX3 member A5V3
+QUALIFY CX3 member A5V4
+QUALIFY CX3 member A5V5
+QUALIFY CX3 member A5V6
+QUALIFY CX3 member A5V7
+QUALIFY CX3 member A6V1
+QUALIFY CX3 member A6V2
+QUALIFY CX3 member A6V3
+QUALIFY CX3 member A6V4
+QUALIFY CX3 member A6V5
+QUALIFY CX3 member A6V6
+QUALIFY CX3 member A6V7
+QUALIFY CX3 member A7V1
+QUALIFY CX3 member A7V2
+QUALIFY CX3 member A7V3
+QUALIFY CX3 member A7V4
+QUALIFY CX3 member A7V5
+QUALIFY CX3 member A7V6
+QUALIFY CX3 member A7V7
+
+ENTITY RA1
+QUALIFY RA1 kind relation
+QUALIFY RA1 type tau_R
+RTYPE RA1 tau_A tau_A
+QUALIFY RA1 functional true
+
+EDGE A1 RA1 A2 1
+
+EDGE A2 RA1 A3 1
+
+EDGE A3 RA1 A4 1
+
+EDGE A4 RA1 A5 1
+
+EDGE A5 RA1 A6 1
+
+EDGE A6 RA1 A7 1
+
+ENTITY U5
+QUALIFY U5 kind stream
+QUALIFY U5 type Stream(Pair(tau_A,tau_V))
+AT U5 I0 A1V3
+AT U5 I1 A2V2
+AT U5 I2 A3V1
+
+ENTITY U6
+QUALIFY U6 kind stream
+QUALIFY U6 type Stream(Pair(tau_A,tau_V))
+AT U6 I0 A2V1
+AT U6 I1 A3V7
+AT U6 I2 A4V6
+
+ENTITY U7
+QUALIFY U7 kind stream
+QUALIFY U7 type Stream(Pair(tau_A,tau_V))
+AT U7 I0 A3V2
+AT U7 I1 A4V1
+
+ENTITY T3
+QUALIFY T3 kind task
+QUALIFY T3 context CX3
+QUALIFY T3 input U5
+QUALIFY T3 input U6
+QUALIFY T3 input U7
+
+UNKNOWN_AT T3 X3 U7 I2 Pair(tau_A,tau_V)
+
+CONSTRAINT COMPONENT_RELATION C3A U7 1 RA1
+QUALIFY T3 constraint C3A
+
+CONSTRAINT COMPONENT_RELATION C3V U7 2 RVdown
+QUALIFY T3 constraint C3V
