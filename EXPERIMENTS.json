@@ -1,0 +1,44 @@
+{
+  "E1": {
+    "title": "Baseline developmental curriculum",
+    "description": "P3-comparable LLM-proposer realization of the T1-T6 developmental sequence.",
+    "run_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11"
+    ]
+  },
+  "E2": {
+    "title": "Group A: local structural-support and leakage controls",
+    "description": "Minimal Base-A controls: supported completion, identifier permutation, malformed reference/target, type contamination, non-KS result, and non-semantic meta hint.",
+    "run_ids": [
+      "E2T1",
+      "E2T2",
+      "E2T3",
+      "E2T4",
+      "E2T5",
+      "E2T6",
+      "E2T7"
+    ]
+  },
+  "E3": {
+    "title": "Controlled composition and reuse",
+    "description": "Positive developmental curriculum: letter rule, letter-indexed numerical rule, E3T3 pre/build/post composition control, and independent-argument composition.",
+    "run_ids": [
+      "E3T1",
+      "E3T2",
+      "E3T3_pre",
+      "E3T3_build",
+      "E3T3_post",
+      "E3T4"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+v09r2 SOFTWARE VALIDATION. No live LLM calls.
+Tasks, controls, protocol, KSU and Codex transport unchanged from v09r1.
+test_E1_curriculum_actual_state (test_checked.CheckedTests.test_E1_curriculum_actual_state) ... ok
+test_E3_curriculum_actual_state (test_checked.CheckedTests.test_E3_curriculum_actual_state) ... ok
+test_absent_relation (test_checked.CheckedTests.test_absent_relation) ... ok
+test_altered_intermediate (test_checked.CheckedTests.test_altered_intermediate) ... ok
+test_disabled_construction (test_checked.CheckedTests.test_disabled_construction) ... ok
+test_disabled_insertion_valid_solution (test_checked.CheckedTests.test_disabled_insertion_valid_solution) ... ok
+test_disabled_proposals (test_checked.CheckedTests.test_disabled_proposals) ... ok
+test_duplicate_proposal (test_checked.CheckedTests.test_duplicate_proposal) ... ok
+test_e2_controls_fixed_state (test_checked.CheckedTests.test_e2_controls_fixed_state) ... ok
+test_e3_construction_requires_admission (test_checked.CheckedTests.test_e3_construction_requires_admission) ... ok
+test_e3_counterexample_rejected (test_checked.CheckedTests.test_e3_counterexample_rejected) ... ok
+test_e3_missing_parent (test_checked.CheckedTests.test_e3_missing_parent) ... ok
+test_e3_wrong_parent_description (test_checked.CheckedTests.test_e3_wrong_parent_description) ... ok
+test_fabricated_trace_step (test_checked.CheckedTests.test_fabricated_trace_step) ... ok
+test_false_no_solution (test_checked.CheckedTests.test_false_no_solution) ... ok
+test_id_collision (test_checked.CheckedTests.test_id_collision) ... ok
+test_id_injection (test_checked.CheckedTests.test_id_injection) ... ok
+test_invalid_proposal (test_checked.CheckedTests.test_invalid_proposal) ... ok
+test_missing_trace (test_checked.CheckedTests.test_missing_trace) ... ok
+test_no_checkpoint_loading_during_sequence (test_checked.CheckedTests.test_no_checkpoint_loading_during_sequence) ... ok
+test_out_of_range (test_checked.CheckedTests.test_out_of_range) ... ok
+test_schema_accepts_generated_response (test_checked.CheckedTests.test_schema_accepts_generated_response) ... ok
+test_schema_rejects_extra (test_checked.CheckedTests.test_schema_rejects_extra) ... ok
+test_schema_rejects_false_array (test_checked.CheckedTests.test_schema_rejects_false_array) ... ok
+test_schema_requires_all_fields (test_checked.CheckedTests.test_schema_requires_all_fields) ... ok
+test_silent_extra_proposal_field (test_checked.CheckedTests.test_silent_extra_proposal_field) ... ok
+test_successor_boundary (test_checked.CheckedTests.test_successor_boundary) ... ok
+test_unknown_operation (test_checked.CheckedTests.test_unknown_operation) ... ok
+test_wrong_answer (test_checked.CheckedTests.test_wrong_answer) ... ok
+test_wrong_relation (test_checked.CheckedTests.test_wrong_relation) ... ok
+test_check_does_not_invoke_codex (test_launchers.LauncherTests.test_check_does_not_invoke_codex) ... ok
+test_latest_execution_error_is_visible (test_launchers.LauncherTests.test_latest_execution_error_is_visible) ... ok
+test_menu_returns_without_model_call (test_launchers.LauncherTests.test_menu_returns_without_model_call) ... ok
+test_model_selected_only_once (test_launchers.LauncherTests.test_model_selected_only_once) ... ok
+test_full_console_output (test_reporting.ReportingTests.test_full_console_output) ... ok
+test_malformed_response_still_reported (test_reporting.ReportingTests.test_malformed_response_still_reported) ... ok
+test_rejected_trace_is_never_labelled_checked (test_reporting.ReportingTests.test_rejected_trace_is_never_labelled_checked) ... ok
+test_task_result_and_full_trace_saved (test_reporting.ReportingTests.test_task_result_and_full_trace_saved) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 1.366s
+
+OK

@@ -1,0 +1,19 @@
+{
+  "default_profile": "PAPER",
+  "allowed_reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"],
+  "profiles": {
+    "PAPER": {
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "medium",
+      "paper_replication": true,
+      "description": "Frozen proposer configuration intended for the reported P4 experiments."
+    },
+    "LEGACY": {
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "none",
+      "paper_replication": false,
+      "description": "Reproduces the earlier v07/v07r1 proposer setting used during development."
+    }
+  },
+  "custom_allowed": true
+}

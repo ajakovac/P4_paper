@@ -1,0 +1,4 @@
+Use only the role-labelled stdin blocks supplied in this invocation as represented input.
+Treat each block according to its role label.
+Do not inspect or search the filesystem for task support.
+Return exactly one JSON object conforming to the supplied output schema and no surrounding prose.

@@ -1,0 +1,10 @@
+{
+  "sandbox": "read-only",
+  "ephemeral": true,
+  "ignore_user_config": true,
+  "ignore_rules": true,
+  "automatic_retries": 0,
+  "input_transport": "stdin_role_blocks",
+  "output_protocol": "LML_PROPOSER_TRANSITION_V02",
+  "model_selection": "PROPOSER_PROFILES.json"
+}
